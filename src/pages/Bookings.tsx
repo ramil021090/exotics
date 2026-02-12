@@ -12,6 +12,8 @@ const Bookings = () => {
     fetchBookings();
   }, [fetchBookings]);
 
+  if (!bookings.length) return <h1>No bookings found</h1>;
+
   return (
     <>
       <Subheader title="Bookings" />
@@ -20,8 +22,12 @@ const Bookings = () => {
           <h1>category</h1>
           <h1>descriptions</h1>
           <h1>comment</h1>
+          <h1>created_at</h1>
+          <h1>updated_at</h1>
+          <h1>species</h1>
+          <h1>users</h1>
         </div>
-        {/* {bookings.map((books) => (
+        {bookings.map((books) => (
           <div
             key={books.id}
             className="flex justify-between bg-slate-400 border px-4 mb-0.5"
@@ -30,7 +36,7 @@ const Bookings = () => {
             <h1 className=" flex text-right">{books.descriptions}</h1>
             <h1 className=" flex text-right">{books.comment}</h1>
           </div>
-        ))} */}
+        ))}
       </div>
     </>
   );

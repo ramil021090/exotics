@@ -6,7 +6,7 @@ export const fetchBookings= async (set: (state: Partial<BookingsStoreProps>) => 
     try {
       const { data, error } = await supabase
         .from("bookings")
-        .select("*,species(*)")
+        .select("*,species(*),users(*)")
         .order("created_at", { ascending: false });
       if (error) {
         throw error;
