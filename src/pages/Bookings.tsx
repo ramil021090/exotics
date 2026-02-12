@@ -5,13 +5,13 @@ import Subheader from "../ui/Subheader";
 const Bookings = () => {
   const bookings = useBookingsStore((state) => state.bookings);
   const fetchBookings = useBookingsStore((state) => state.fetchBookings);
+
   console.log("bookings:", bookings);
 
   useEffect(() => {
     fetchBookings();
   }, [fetchBookings]);
-  //hello there
-  //hello there part 2
+
   return (
     <>
       <Subheader title="Bookings" />
