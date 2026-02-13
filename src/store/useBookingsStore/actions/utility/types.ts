@@ -1,29 +1,40 @@
-
-export interface Bookings {
-  id: number;
-  category: string;
-  descriptions: string;
-  comment:string
-  price: number;
-  images: string;
-  isDeal: boolean;
-  created_at?: string | number;
-  update_at?:string;
+interface User{
+  firstName: string | null;
+  lastName: string | null;
 }
 
-export type ItemFormData = Omit<Bookings, "id" | "created_at" | "updated_at">;
-export type ItemUpdateData = Partial<Omit<Bookings, "id" | "created_at" | "updated_at">>;
+interface Species{
+  id:number|null
+  category: string |null;
+  price:number |null
+  descriptions:string|null
+  
+  
+}
+
+export interface BookingsProps {
+  id: number;
+  comment:string
+  images: string;
+  status:string;
+  created_at?: string | number;
+  users?: User | null;
+  species:Species|null
+}
+
+export type ItemFormData = Omit<BookingsProps, "id" | "created_at" | "updated_at">;
+export type ItemUpdateData = Partial<Omit<BookingsProps, "id" | "created_at" | "updated_at">>;
 
 export interface BookingsStoreState {
-  items: Bookings[];
+  items: BookingsProps[];
   loading: boolean;
   error: string | null;
-  selectedItem: Bookings | null;
+  selectedItem: BookingsProps | null;
 }
 
 
 export interface BookingsStoreProps {
-  bookings: Bookings[];
+  bookings: BookingsProps[];
   error?: string | null;
   loading:boolean;
   fetchBookings: () => Promise<void>;

@@ -1,42 +1,36 @@
 import { useEffect } from "react";
 import { useBookingsStore } from "../store/useBookingsStore/useBookingsStore";
 import Subheader from "../ui/Subheader";
+import BookingsDisplayTable from "../features/bookings/BookingsDisplayTable";
 
 const Bookings = () => {
   const bookings = useBookingsStore((state) => state.bookings);
   const fetchBookings = useBookingsStore((state) => state.fetchBookings);
 
-  console.log("bookings:", bookings);
-
   useEffect(() => {
     fetchBookings();
   }, [fetchBookings]);
 
-  if (!bookings.length) return <h1>No bookings found</h1>;
-
   return (
     <>
       <Subheader title="Bookings" />
-      <div className=" m-2 ">
-        <div className="flex justify-between mb-1 p-4 bg-slate-500">
-          <h1>category</h1>
-          <h1>descriptions</h1>
-          <h1>price</h1>
-          <h1>users/potential buyer</h1>
-          <h1>comment</h1>
-        </div>
-        {bookings.map((books) => (
-          <div
-            key={books.id}
-            className="flex justify-between bg-slate-400 border px-4 mb-0.5"
-          >
-            <h1 className=" flex text-right ">{books.category}</h1>
-            <h1 className=" flex text-right">{books.descriptions}</h1>
-            <h1 className=" flex text-right ">{books.price}</h1>
-            <h1 className=" flex text-right">{books.users.firstName}</h1>
-            <h1 className=" flex text-right">{books.comment}</h1>
+      <div className=" m-2 mx-auto ">
+        <div className="overflow-x-auto">
+          <div className="min-w-full">
+            <div className="flex mb-1 p-4 bg-slate-300">
+              <h1 className="px-4 py-2 text-left">no.</h1>
+              <h1 className="px-4 py-2 text-left">category</h1>
+              <h1 className="px-4 py-2 text-left">descriptions</h1>
+              <h1 className="px-4 py-2 text-left">price</h1>
+              <h1 className="px-4 py-2 text-left">users/potential buyer</h1>
+              <h1 className="px-4 py-2 text-left bg-amber-400">status</h1>
+              <h1 className="px-4 py-2 text-left">comment</h1>
+            </div>
+            {bookings.map((books) => (
+              <BookingsDisplayTable data={books} key={books.id} />
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </>
   );
