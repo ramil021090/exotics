@@ -21,11 +21,9 @@ const Bookings = () => {
         <div className="flex justify-between mb-1 p-4 bg-slate-500">
           <h1>category</h1>
           <h1>descriptions</h1>
+          <h1>price</h1>
+          <h1>users/potential buyer</h1>
           <h1>comment</h1>
-          <h1>created_at</h1>
-          <h1>updated_at</h1>
-          <h1>species</h1>
-          <h1>users</h1>
         </div>
         {bookings.map((books) => (
           <div
@@ -34,6 +32,8 @@ const Bookings = () => {
           >
             <h1 className=" flex text-right ">{books.category}</h1>
             <h1 className=" flex text-right">{books.descriptions}</h1>
+            <h1 className=" flex text-right ">{books.price}</h1>
+            <h1 className=" flex text-right">{books.users.firstName}</h1>
             <h1 className=" flex text-right">{books.comment}</h1>
           </div>
         ))}
