@@ -7,7 +7,7 @@ interface DisplayRowProps {
 const DisplayRow = ({ children }: DisplayRowProps) => {
   return (
     <>
-      <div className="flex justify-between  bg-slate-200 border px-4 mb-0.5">
+      <div className="flex justify-between  bg-slate-200 border px-4 ">
         {children}
       </div>
     </>

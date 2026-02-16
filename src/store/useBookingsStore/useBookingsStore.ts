@@ -4,12 +4,21 @@ import { fetchBookings } from "./actions/fetchBookings";
 
 
 
-export const useBookingsStore = create<BookingsStoreProps>((set,) => ({
+export const useBookingsStore = create<BookingsStoreProps>((set,get) => ({
+
   bookings: [],
+  count:0,
+
+  pageSize:5,
+  pageCount:0,
+  currentPage:1,
+  
   error: null,
   loading: false,
 
-  fetchBookings: () => fetchBookings(set),
+  fetchBookings: () => fetchBookings(set,get),
+  
+  
   
 }));
 // addItem: (...props) => addItem(set,...props),

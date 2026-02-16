@@ -16,7 +16,7 @@ const DisplayTableOperations = () => {
         options={[
           { value: "category-asc", label: " Sort by category(a-z)" },
           { value: "category-desc", label: "Sort by category(z-a)" },
-          { value: "description-asc", label: " Sort by description(a-z)" },
+          { value: "description-asc", label: " Sort by description" },
           { value: "date-asc", label: "Sort by dates(from newest)" },
         ]}
       />
