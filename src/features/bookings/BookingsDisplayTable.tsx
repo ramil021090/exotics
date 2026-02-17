@@ -36,7 +36,7 @@ const BookingsDisplayTable = ({ data }: BookingsDisplayTableProps) => {
           <span>{data.users?.lastName ?? " "}</span>
         </DisplayRowTableContents>
         <DisplayRowTableContents
-          className={statusTagname[data.status as Status]}
+          className={`border rounded-lg my-1 bg-white  ${statusTagname[data.status as Status]}`}
         >
           {data.status}
         </DisplayRowTableContents>
