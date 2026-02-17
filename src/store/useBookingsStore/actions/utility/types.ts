@@ -44,11 +44,14 @@ export interface BookingsStoreProps {
   currentPage: number;
   pageSize: number;
   pageCount: number;
+
   
 
 
   fetchBookings: (page?:number) => Promise<void>;
-  setSelectedItem?:(item: BookingsProps | null) => void;
+  prefetchBookingsPage: (page?:number) => Promise<void>;
+
+  // setSelectedItem?:(item: BookingsProps | null) => void;
   // addItem: (itemData: Omit<Items, "id" | "created_at">) => Promise<void>;
   // deleteItem: (id: number) => Promise<void>;
   // updateItem: (id:  number, updatedData: Partial<Omit<Items, "id" | "created_at">>) => Promise<void>;
