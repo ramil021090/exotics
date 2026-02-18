@@ -19,7 +19,9 @@ const BookingsDisplayTable = ({ data }: BookingsDisplayTableProps) => {
     <>
       <DisplayRow>
         <DisplayRowTableContents className="text-left">
-          {new Date(data.created_at).toLocaleDateString()}
+          {data.created_at
+            ? new Date(data.created_at).toLocaleDateString()
+            : "No Date"}
         </DisplayRowTableContents>
         <DisplayRowTableContents className="text-left">
           {data.species?.category ?? " "}

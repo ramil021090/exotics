@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import type { BookingsStoreProps } from "./actions/utility/types";
 import { fetchBookings } from "./actions/fetchBookings";
+import { prefetchBookingsPage } from "./actions/prefetchBookingsPage";
+
 
 
 
@@ -9,14 +11,23 @@ export const useBookingsStore = create<BookingsStoreProps>((set,get) => ({
   bookings: [],
   count:0,
 
-  pageSize:5,
+  pageSize:3,
   pageCount:0,
   currentPage:1,
   
   error: null,
   loading: false,
 
-  fetchBookings: () => fetchBookings(set,get),
+
+  fetchBookings: async (page?: number) => {
+    if (page) {
+      set({ currentPage: page });
+    }
+    await fetchBookings(set, get);},
+
+  prefetchBookingsPage:async(page?:number)=>{
+    await prefetchBookingsPage( get, page);
+  },
   
   
   

@@ -3,15 +3,22 @@ import { useBookingsStore } from "../store/useBookingsStore/useBookingsStore";
 import Subheader from "../ui/Subheader";
 import BookingsDisplayTable from "../features/bookings/BookingsDisplayTable";
 import Pagination from "../ui/Pagination";
+import { useSearchParams } from "react-router-dom";
 
 const Bookings = () => {
+  const [searchParams] = useSearchParams();
+
   const bookings = useBookingsStore((state) => state.bookings);
   const fetchBookings = useBookingsStore((state) => state.fetchBookings);
-  const { count } = useBookingsStore();
+  const { count, pageSize } = useBookingsStore();
+
+  const currentPage = Number(searchParams.get("page")) || 1;
 
   useEffect(() => {
-    fetchBookings();
-  }, [fetchBookings]);
+    fetchBookings(currentPage);
+  }, [fetchBookings, currentPage]);
+
+  console.log(bookings);
 
   return (
     <>
@@ -37,7 +44,7 @@ const Bookings = () => {
         {bookings.map((books) => (
           <BookingsDisplayTable data={books} key={books.id} />
         ))}
-        <Pagination count={count} />
+        <Pagination count={count} pagSize={pageSize} />
       </div>
     </>
   );
