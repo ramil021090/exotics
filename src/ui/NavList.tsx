@@ -5,7 +5,11 @@ interface NavListProps {
   icon?: ReactNode;
   classname?: string;
 }
-const NavList = ({ name, icon, classname = "flex" }: NavListProps) => {
+const NavList = ({
+  name,
+  icon,
+  classname = "flex items-center",
+}: NavListProps) => {
   return (
     <div className={classname}>
       <span className="mr-2 not-odd:text-2xl">{icon}</span>

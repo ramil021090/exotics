@@ -100,7 +100,7 @@ const Button = (props: ButtonProps) => {
   return (
     <div>
       <button
-        className={`${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
+        className={`shadow-lg border-sky-100 ${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
         onClick={handleClick}
         disabled={isDeleting}
         {...rest}
@@ -125,7 +125,7 @@ const Button = (props: ButtonProps) => {
               <div className="flex justify-end gap-3">
                 <button
                   type="button"
-                  className="px-4 py-2 text-gray-700 border bg-gray-100 hover:bg-gray-200 rounded-md transition disabled:opacity-50"
+                  className="shadow-lg border-sky-100  px-4 py-2 text-gray-700 border bg-gray-100 hover:bg-gray-200 rounded-md transition disabled:opacity-50"
                   onClick={handleCancelDelete}
                   disabled={isDeleting}
                 >
@@ -133,7 +133,7 @@ const Button = (props: ButtonProps) => {
                 </button>
                 <button
                   type="button"
-                  className="px-4 py-2 text-white border bg-red-600 hover:bg-red-700 rounded-md transition disabled:opacity-50"
+                  className="shadow-lg border-sky-100  px-4 py-2 text-white border bg-red-600 hover:bg-red-700 rounded-md transition disabled:opacity-50"
                   onClick={handleConfirmDelete}
                   disabled={isDeleting}
                 >
