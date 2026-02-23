@@ -2,12 +2,12 @@ import { create } from "zustand";
 import type { BookingsStoreProps } from "./actions/utility/types";
 import { fetchBookings } from "./actions/fetchBookings";
 import { prefetchBookingsPage } from "./actions/prefetchBookingsPage";
-
-
+// import { getBookingsDetail } from "./actions/getBookingsDetail";
+import supabase from "../../supabase/supabaseClients";
 
 
 export const useBookingsStore = create<BookingsStoreProps>((set,get) => ({
-
+ bookingDetail: null,
   bookings: [],
   count:0,
 
@@ -29,8 +29,23 @@ export const useBookingsStore = create<BookingsStoreProps>((set,get) => ({
     await prefetchBookingsPage( get, page);
   },
   
-  
-  
+ getBookingsDetail: async (id?: number) => {
+
+    if (!id) return;
+    set({ loading: true, error: null, bookingDetail: null });
+    try {
+      const { data, error } = await supabase
+        .from("bookings")
+        .select("*, species(*), users(*)") 
+        .eq("id", id)
+        .single();
+      if (error) throw error;
+      set({ bookingDetail: data, loading: false });
+    } catch (err) {
+      set({ error: (err as Error).message, loading: false });
+    }
+  },
+
 }));
 // addItem: (...props) => addItem(set,...props),
 

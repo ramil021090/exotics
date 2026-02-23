@@ -1,3 +1,5 @@
+import type { Items } from "../../../useExoStore/actions/utility/types";
+
 interface User{
   firstName: string | null;
   lastName: string | null;
@@ -11,10 +13,19 @@ interface Species{
   
   
 }
+interface BookingDetail {
+  id: number;
+  category: string;
+  description: string;
+  comment:string
+  status:string
+  species:Items
+  users:User
+}
 
 export interface BookingsProps {
   id: number;
-  comment:string
+  category:string
   images: string;
   status:string;
   created_at?: string | number;
@@ -34,6 +45,8 @@ export type ItemUpdateData = Partial<Omit<BookingsProps, "id" | "created_at" | "
 
 
 export interface BookingsStoreProps {
+
+  bookingDetail: BookingDetail | null;
   loading: boolean;
   error: string | null;
   
@@ -50,6 +63,8 @@ export interface BookingsStoreProps {
 
   fetchBookings: (page?:number) => Promise<void>;
   prefetchBookingsPage: (page?:number) => Promise<void>;
+  getBookingsDetail: (id:number) => Promise<void>;
+
 
   // setSelectedItem?:(item: BookingsProps | null) => void;
   // addItem: (itemData: Omit<Items, "id" | "created_at">) => Promise<void>;

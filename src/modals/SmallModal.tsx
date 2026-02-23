@@ -27,7 +27,7 @@ const SmallModal = ({ children, onClose }: SmallModalProps) => {
   }, [onClose]);
   return (
     <div
-      className=" absolute  bg-white shadow-lg  p-4 ml-5 z-50 "
+      className=" absolute top-0 bg-slate-50 shadow-lg  p-4 ml-5 z-50 "
       ref={modalRef}
       onClick={(e) => e.stopPropagation()}
     >

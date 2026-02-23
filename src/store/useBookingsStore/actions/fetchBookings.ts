@@ -18,7 +18,7 @@ export const fetchBookings = async (
 
     const { data, error, count } = await supabase
       .from("bookings")
-      .select(`*, species(category, descriptions, price), users(firstName, lastName)`, { 
+      .select(`*, species(*), users(*)`, { 
         count: "exact" 
       })
       .order("created_at", { ascending: false })

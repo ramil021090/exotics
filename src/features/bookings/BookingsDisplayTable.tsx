@@ -1,6 +1,10 @@
+import SmallModal from "../../modals/SmallModal";
 import type { BookingsProps } from "../../store/useBookingsStore/actions/utility/types";
 import DisplayRow from "../../ui/DisplayRow";
 import DisplayRowTableContents from "../../ui/DisplayRowTableContents";
+import { FaEllipsisVertical, FaEye } from "react-icons/fa6";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface BookingsDisplayTableProps {
   data: BookingsProps;
@@ -8,12 +12,20 @@ interface BookingsDisplayTableProps {
 type Status = "unconfirmed" | "confirmed";
 
 const BookingsDisplayTable = ({ data }: BookingsDisplayTableProps) => {
+  const [openId, setOpenId] = useState(false);
+
+  const navigate = useNavigate();
+
   const statusTagname: Record<Status, string> = {
     unconfirmed: " text-red-700",
     confirmed: "text-green-800",
   };
 
   if (!data) return <h1>No bookings found</h1>;
+
+  const handleToggle = () => {
+    setOpenId((prev) => !prev);
+  };
 
   return (
     <>
@@ -42,9 +54,35 @@ const BookingsDisplayTable = ({ data }: BookingsDisplayTableProps) => {
         >
           {data.status}
         </DisplayRowTableContents>
-        <DisplayRowTableContents className=" flex text-right">
+        {/* <DisplayRowTableContents className=" flex text-right">
           {data.comment}
-        </DisplayRowTableContents>
+        </DisplayRowTableContents> */}
+        <div className="flex justify-end relative">
+          <button
+            className="hover:bg-slate-300 my-2 rounded-sm"
+            onClick={handleToggle}
+          >
+            <FaEllipsisVertical />
+          </button>
+
+          {openId && (
+            <SmallModal
+              onClose={() => {
+                setOpenId(false);
+              }}
+            >
+              <div className="flex items-center">
+                <FaEye />{" "}
+                <button
+                  className=" min-w-25"
+                  onClick={() => navigate(`/bookingsDetails/${data.id}`)}
+                >
+                  see details
+                </button>
+              </div>
+            </SmallModal>
+          )}
+        </div>
       </DisplayRow>
     </>
   );

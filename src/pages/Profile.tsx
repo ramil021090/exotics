@@ -59,12 +59,12 @@ const Profile = () => {
         <p>popularity/likes</p>
       </div>
 
-      <div className="flex justify-end bg-slate-400 pt-1.5 pb-1 mb-1 shadow-xl">
+      <div className="flex justify-end pt-1.5 pb-1 mb-1 shadow-xl">
         {/* <Title text="Profile" /> */}
         <AddandEditItem />
       </div>
-      <Subheader title="Profile" />
-      <div className="flex justify-end">
+      <div className="flex justify-between">
+        <Subheader title="Collections" />
         <div className="mr-2 mt-2">
           <DisplayTableOperations />
         </div>
@@ -74,7 +74,10 @@ const Profile = () => {
         data={sortedSpecies}
         // data={filteredSpecies}
         render={(item) => (
-          <div key={item.id} className="  bg-slate-200 mb-1 p-4 rounded-lg ">
+          <div
+            key={item.id}
+            className="  bg-slate-100 mb-1 p-4 rounded-lg shadow-xl "
+          >
             <DisplayTable data={item} />
           </div>
         )}

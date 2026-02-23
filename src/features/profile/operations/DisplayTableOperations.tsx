@@ -3,7 +3,7 @@ import Sort from "./Sort";
 
 const DisplayTableOperations = () => {
   return (
-    <>
+    <div className="flex items-center">
       <Filter
         filterField="filter"
         options={[
@@ -20,7 +20,7 @@ const DisplayTableOperations = () => {
           { value: "date-asc", label: "Sort by dates(from newest)" },
         ]}
       />
-    </>
+    </div>
   );
 };
 

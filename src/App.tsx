@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import Bookings from "./pages/Bookings";
 import { Toaster } from "react-hot-toast";
+import BookingDetails from "./features/bookings/BookingDetails";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
             <Route path="reports" element={<Reports />} />
             <Route path="members" element={<Members />} />
             <Route path="bookings" element={<Bookings />} />
+            <Route path="bookingsDetails/:id" element={<BookingDetails />} />
             <Route path="settings" element={<Settings />} />
           </Route>
 

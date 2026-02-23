@@ -27,7 +27,7 @@ export const Filter = ({ filterField, options }: FilterProps) => {
       {options.map((option) => (
         <div key={option.value}>
           <button
-            className={`px-2 mx-2 border rounded-xl hover:bg-green-500 shadow-lg ${
+            className={`px-2 mx-2 border rounded-md hover:bg-green-500 shadow-lg ${
               selectedValue === option.value
                 ? "bg-green-500 text-white border-green-500"
                 : "bg-white border-gray-300 hover:bg-gray-50"
