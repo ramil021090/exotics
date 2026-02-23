@@ -2,12 +2,11 @@ import { create } from "zustand";
 import type { BookingsStoreProps } from "./actions/utility/types";
 import { fetchBookings } from "./actions/fetchBookings";
 import { prefetchBookingsPage } from "./actions/prefetchBookingsPage";
-// import { getBookingsDetail } from "./actions/getBookingsDetail";
 import supabase from "../../supabase/supabaseClients";
 
 
 export const useBookingsStore = create<BookingsStoreProps>((set,get) => ({
- bookingDetail: null,
+ bookingDetail:null,
   bookings: [],
   count:0,
 

@@ -5,48 +5,28 @@ interface User{
   lastName: string | null;
 }
 
-interface Species{
-  id:number|null
-  category: string |null;
-  price:number |null
-  descriptions:string|null
-  
-  
-}
-interface BookingDetail {
-  id: number;
-  category: string;
-  description: string;
-  comment:string
-  status:string
-  species:Items
-  users:User
-}
+
+
 
 export interface BookingsProps {
   id: number;
-  category:string
-  images: string;
+  comment:string
   status:string;
   created_at?: string | number;
   users?: User | null;
-  species:Species|null
+  species?:Items|null
+  users_id?:number |null
+  species_id?:number |null
 }
 
 export type ItemFormData = Omit<BookingsProps, "id" | "created_at" | "updated_at">;
 export type ItemUpdateData = Partial<Omit<BookingsProps, "id" | "created_at" | "updated_at">>;
 
-// export interface BookingsStoreState {
-//   items: BookingsProps[];
-//   loading: boolean;
-//   error: string | null;
-//   selectedItem: BookingsProps | null;
-// }
 
 
 export interface BookingsStoreProps {
 
-  bookingDetail: BookingDetail | null;
+  bookingDetail: BookingsProps | null;
   loading: boolean;
   error: string | null;
   
