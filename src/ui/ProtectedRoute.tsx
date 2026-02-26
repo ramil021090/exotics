@@ -1,26 +1,40 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useAuthenticationStore } from "../store/useAuthentication.tsx/useAuthenticationStore";
+import { useNavigate } from "react-router-dom";
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  //1. get the authenticated user
+  const navigate = useNavigate();
+  const { isLoading, user } = useAuthenticationStore();
   const getCurrentUser = useAuthenticationStore(
     (state) => state.getCurrentUser,
   );
-  const { isLoading, user } = useAuthenticationStore();
+
   console.log("user:", user);
 
-  //2.while loading
+  //.if there is no authenticated user, back to login
+  const isAuthenticated = user?.role === "authenticated";
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated, isLoading, navigate]);
+
+  //. get the authenticated user
+  useEffect(() => {
+    getCurrentUser();
+  }, [getCurrentUser]);
+
+  //.while loading
   if (isLoading)
     return (
       <h1 className="h-screen flex justify-center items-center">"Loading";</h1>
     );
 
-  //3.
-
-  return children;
+  if (isAuthenticated) return children;
 };
 
 export default ProtectedRoute;
