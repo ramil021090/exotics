@@ -9,7 +9,7 @@ export const getBookingsDetail= async (  set: (state: Partial<BookingsStoreProps
     try {
       const { data, error } = await supabase
         .from("bookings")
-        .select("*, species(*), users(*)") 
+        .select("*, species(*), keepers(*)") 
         .eq("id", id)
         .single();
       if (error) throw error;

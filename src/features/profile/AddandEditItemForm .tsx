@@ -22,7 +22,7 @@ interface AddItemProps {
   displayTableToEdit?: Items | Items[];
 }
 
-interface InputForm {
+interface InputAddEditForm {
   descriptions: string;
   price: number;
   category: string;
@@ -53,13 +53,13 @@ const AddandEditItemForm: React.FC<AddItemProps> = (props) => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<InputForm>({
+  } = useForm<InputAddEditForm>({
     defaultValues: isEditSession ? editValues : {},
   });
 
   const items = { ...editValues };
 
-  const onSubmit = async (formData: InputForm) => {
+  const onSubmit = async (formData: InputAddEditForm) => {
     try {
       setIsSubmitting(true);
 
@@ -104,7 +104,7 @@ const AddandEditItemForm: React.FC<AddItemProps> = (props) => {
 
           <TextAreaFrom
             label="descriptions"
-            {...register("descriptions", { required: "required" })}
+            {...register("descriptions", { required: "field required!" })}
             errors={errors?.descriptions?.message}
           />
 
@@ -126,7 +126,7 @@ const AddandEditItemForm: React.FC<AddItemProps> = (props) => {
               label="photo"
               accept="image/*"
               {...register("images", {
-                required: isEditSession ? false : "required",
+                required: isEditSession ? false : "image is required!",
               })}
               errors={errors?.images?.message}
             />

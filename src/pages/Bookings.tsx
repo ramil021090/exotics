@@ -34,10 +34,10 @@ const Bookings = () => {
           </h1>
           <h1 className="px-4 py-2 text-left max-w-fit  bg-amber-400">price</h1>
           <h1 className="px-4 py-2 text-left  max-w-fit bg-amber-400 ">
-            users
+            keeper
           </h1>
           <h1 className="px-4 py-2 text-left max-w-fit bg-amber-400">status</h1>
-          <h1 className="px-4 py-2 text-left max-w-fit bg-amber-400 "> </h1>
+          <h1 className="px-2 py-2  "> </h1>
         </div>
         {bookings.map((books) => (
           <BookingsDisplayTable data={books} key={books.id} />

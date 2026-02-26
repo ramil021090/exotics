@@ -13,9 +13,9 @@ export interface BookingsProps {
   comment:string
   status:string;
   created_at?: string | number;
-  users?: User | null;
+  keepers?: User | null;
   species?:Items|null
-  users_id?:number |null
+  keepers_id?:number |null
   species_id?:number |null
 }
 
