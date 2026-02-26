@@ -10,6 +10,7 @@ import PageNotFound from "./pages/PageNotFound";
 import Bookings from "./pages/Bookings";
 import { Toaster } from "react-hot-toast";
 import BookingDetails from "./features/bookings/BookingDetails";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const App = () => {
   return (
@@ -36,7 +37,13 @@ const App = () => {
       />
       <BrowserRouter>
         <Routes>
-          <Route element={<AppLayout />}>
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route index element={<Navigate replace to="marketplace" />} />
 
             <Route path="profile" element={<Profile />} />

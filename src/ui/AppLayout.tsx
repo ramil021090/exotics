@@ -10,7 +10,7 @@ import Main from "./Main";
 const AppLayout = () => {
   return (
     <>
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen ">
         <Sidebar />
         <div className="flex-1 flex flex-col">
           <Header>

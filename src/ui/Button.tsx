@@ -83,7 +83,7 @@ const Button = (props: ButtonProps) => {
       case "primary":
         return "bg-gray-600 text-white border rounded-xl shadow-lg active:scale-95  hover:bg-blue-700";
       case "secondary":
-        return "bg-green-600 text-white border rounded-xl shadow-lg active:scale-95 hover:bg-gray-700";
+        return "bg-blue-600 text-white border rounded-xl shadow-lg active:scale-95 hover:bg-green-400 hover:text-black";
       case "success":
         return "bg-gray-200  rounded-xl shadow-lg active:scale-95 hover:bg-green-700";
       case "danger":
