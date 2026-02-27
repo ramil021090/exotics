@@ -21,7 +21,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     if (!isAuthenticated) {
       navigate("/login");
     }
-  }, [isAuthenticated, isLoading, navigate]);
+  }, [isAuthenticated, navigate]);
 
   //. get the authenticated user
   useEffect(() => {
