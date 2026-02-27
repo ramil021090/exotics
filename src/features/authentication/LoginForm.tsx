@@ -43,6 +43,7 @@ const LoginForm = () => {
         />
         <InputForm
           label="Password"
+          type="password"
           {...register("password", { required: "password is required!" })}
           errors={errors?.password?.message}
         />
