@@ -19,7 +19,7 @@ export const getCurrentUser = async (
       error: null,
     });
 
-  console.log("Current User:",session);
+  console.log("Current User/session:",session);
   } catch (error) {
     console.error(`Failed to get the current user${error}`);
     set({

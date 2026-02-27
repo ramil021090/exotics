@@ -14,7 +14,7 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    // reset,
+    reset,
   } = useForm<LoginFormProps>();
 
   const login = useAuthenticationStore((state) => state.login);
@@ -28,6 +28,7 @@ const LoginForm = () => {
     if (user && !error) {
       navigate("/marketplace");
     }
+    reset();
   };
   return (
     <>
