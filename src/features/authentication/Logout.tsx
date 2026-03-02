@@ -1,0 +1,13 @@
+import { HiMiniArrowRightStartOnRectangle } from "react-icons/hi2";
+import { useAuthenticationStore } from "../../store/useAuthentication.tsx/useAuthenticationStore";
+
+const Logout = () => {
+  const logout = useAuthenticationStore((state) => state.logout);
+  return (
+    <button className="hover:bg-red-500" onClick={logout}>
+      <HiMiniArrowRightStartOnRectangle />
+    </button>
+  );
+};
+
+export default Logout;

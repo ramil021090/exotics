@@ -6,6 +6,7 @@ import NavList from "./NavList";
 import Logo from "./Logo";
 import { Fragment } from "react/jsx-runtime";
 import Main from "./Main";
+import Logout from "../features/authentication/Logout";
 
 const AppLayout = () => {
   return (
@@ -30,7 +31,10 @@ const AppLayout = () => {
                   </Fragment>
                 ))}
               </ul>
-              <NavLink to="profile">profile</NavLink>
+              <div className="flex  items-center justify-center">
+                <NavLink to="profile">profile</NavLink>
+                <Logout />
+              </div>
             </div>
           </Header>
           <Main>
