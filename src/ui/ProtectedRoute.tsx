@@ -12,10 +12,12 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     (state) => state.getCurrentUser,
   );
 
-  console.log("user:", user);
+  // console.log("user:", user);
 
   //.if there is no authenticated user, back to login
   const isAuthenticated = user?.role === "authenticated";
+
+  console.log("isAuthenticated:", isAuthenticated);
 
   useEffect(() => {
     if (!isAuthenticated) {

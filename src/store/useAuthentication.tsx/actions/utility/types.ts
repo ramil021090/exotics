@@ -14,5 +14,5 @@ export interface AuthState {
   error: string | null;
   login: (credentials: Credentials) => Promise<void>;
   getCurrentUser:()=>Promise<void>
-  // logout: () => Promise<void>; // optional
+  logout: () => Promise<void>; 
 }
