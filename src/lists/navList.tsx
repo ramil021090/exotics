@@ -13,7 +13,7 @@ interface NavListProps {
 export const navList: NavListProps[] = [
   { id: 1, name: "profile", icon: <IoPersonSharp /> },
   { id: 2, name: "marketplace", icon: <SiCoinmarketcap /> },
-  { id: 3, name: "members", icon: <IoPeopleSharp /> },
+  { id: 3, name: "keepers", icon: <IoPeopleSharp /> },
   { id: 4, name: "bookings", icon: <MdForum /> },
   { id: 5, name: "reports", icon: <MdReport /> },
   { id: 6, name: "settings", icon: <PiGearSixFill /> },

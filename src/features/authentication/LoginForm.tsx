@@ -4,11 +4,7 @@ import Button from "../../ui/Button";
 import { useAuthenticationStore } from "../../store/useAuthentication.tsx/useAuthenticationStore";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-
-interface LoginFormProps {
-  email: string;
-  password: string;
-}
+import type { Credentials } from "../../store/useAuthentication.tsx/actions/utility/types";
 
 const LoginForm = () => {
   const {
@@ -16,7 +12,7 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<LoginFormProps>();
+  } = useForm<Credentials>();
 
   const login = useAuthenticationStore((state) => state.login);
   const navigate = useNavigate();
@@ -29,7 +25,7 @@ const LoginForm = () => {
     reset();
   }, [error, navigate, reset, user]);
 
-  const onSubmit = async (data: LoginFormProps) => {
+  const onSubmit = async (data: Credentials) => {
     if (!data.email || !data.password) return;
     await login(data);
   };
@@ -41,7 +37,7 @@ const LoginForm = () => {
       >
         <InputForm
           // className="inset-shadow-sm bg-white outline outline-offset-2 rounded-sm"
-          value="ramil@example.com"
+          // value="ramil@example.com"
           label="Email address"
           {...register("email", { required: "email is required!" })}
           errors={errors?.email?.message}
