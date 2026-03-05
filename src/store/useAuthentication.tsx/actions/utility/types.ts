@@ -1,10 +1,26 @@
 import type { User, Session } from '@supabase/supabase-js';
 
+type Password = string & { readonly __brand: unique symbol };
+
 export interface Credentials {
   email: string;
-  password: string;
+  password: Password;
 }
 
+export interface FullnameInput {
+  firstName: string;
+  lastName: string;
+}
+
+export interface IFormInput {
+  fullName: FullnameInput;
+  gender: "male" | "female" | "other";
+  username: string;
+  email:string;
+  password:Password;
+  confirmPassword: Password;
+
+}
 
 
 export interface AuthState {
@@ -15,4 +31,5 @@ export interface AuthState {
   login: (credentials: Credentials) => Promise<void>;
   getCurrentUser:()=>Promise<void>
   logout: () => Promise<void>; 
+  signup:(formData:IFormInput)=>Promise<void>
 }
