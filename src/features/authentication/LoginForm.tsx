@@ -16,7 +16,8 @@ const LoginForm = () => {
 
   const login = useAuthenticationStore((state) => state.login);
   const navigate = useNavigate();
-  const { user, error } = useAuthenticationStore.getState();
+  const user = useAuthenticationStore((state) => state.user);
+  const error = useAuthenticationStore((state) => state.error);
 
   useEffect(() => {
     if (user && !error) {
@@ -26,7 +27,11 @@ const LoginForm = () => {
   }, [error, navigate, reset, user]);
 
   const onSubmit = async (data: Credentials) => {
-    if (!data.email || !data.password) return;
+    console.log("onSubmit called with:", data);
+    if (!data.email || !data.password) {
+      console.log("Empty fields – returning early");
+      return;
+    }
     await login(data);
   };
   return (

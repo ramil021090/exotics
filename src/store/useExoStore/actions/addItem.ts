@@ -9,6 +9,12 @@ export const addItem = async (
   itemData: Omit<Items, "id" | "created_at">
 ) => {
   try {
+    const {data:users,error:userError}=await supabase.auth.getUser();
+
+    if(userError) throw userError
+    const user=users?.user
+    if (!user) throw new Error("You must be logged in to add an item");
+
     let imageUrl:string="";
     const images = itemData.images;
 
@@ -35,6 +41,7 @@ export const addItem = async (
       price:itemData.price,
       images:imageUrl,
       isSold: false,
+      user_id: user.id,
     };
 
   console.log('Inserting item with image URL:', imageUrl);
