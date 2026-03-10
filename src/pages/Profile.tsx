@@ -8,6 +8,7 @@ import type { Items } from "../store/useExoStore/actions/utility/types";
 import { useExoStore } from "../store/useExoStore/useExoStore";
 import ItemsList from "../ui/ItemsList";
 import Subheader from "../ui/Subheader";
+import PersonalInformation from "../features/authentication/header/PersonalInformation";
 
 const Profile = () => {
   const items = useExoStore((state) => state.items);
@@ -52,12 +53,7 @@ const Profile = () => {
   });
   return (
     <>
-      <p>cover photo</p>
-      <div>
-        <p>ramil villahermosa</p>
-        <span>id:</span>
-        <p>popularity/likes</p>
-      </div>
+      <PersonalInformation />
 
       <div className="flex justify-end pt-1.5 pb-1 mb-1 shadow-xl">
         {/* <Title text="Profile" /> */}

@@ -5,7 +5,9 @@ const Logout = () => {
   const logout = useAuthenticationStore((state) => state.logout);
   return (
     <button className="hover:bg-red-500" onClick={logout}>
-      <HiMiniArrowRightStartOnRectangle />
+      <div className="flex items-center">
+        <HiMiniArrowRightStartOnRectangle /> <span>logout</span>
+      </div>
     </button>
   );
 };
