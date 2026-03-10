@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Profile from "./pages/Profile";
 import Market from "./pages/Market";
 import Reports from "./pages/Reports";
-import Members from "./pages/Keepers";
+import Keepers from "./pages/Keepers";
 import AppLayout from "./ui/AppLayout";
 import Settings from "./pages/Settings";
 import Login from "./pages/Login";
@@ -49,7 +49,7 @@ const App = () => {
             <Route path="profile" element={<Profile />} />
             <Route path="marketplace" element={<Market />} />
             <Route path="reports" element={<Reports />} />
-            <Route path="keepers" element={<Members />} />
+            <Route path="keepers" element={<Keepers />} />
             <Route path="bookings" element={<Bookings />} />
             <Route path="bookingsDetails/:id" element={<BookingDetails />} />
             <Route path="settings" element={<Settings />} />

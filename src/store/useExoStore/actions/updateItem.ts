@@ -7,15 +7,33 @@ import type { ExoStoreProps, Items } from "./utility/types";
  updatedData: Partial<Omit<Items, "id" | "created_at">>
 ) => {
     try {
-      const { error } = await supabase
+      const { data, error: userError } = await supabase.auth.getUser();
+      if (userError) throw userError;
+
+      const user = data?.user;
+      if (!user) throw new Error("You must be logged in to update an item");
+
+      
+      const { data:updatedItem,error } = await supabase
       .from("species")
       .update(updatedData)
-      .eq("id", id);
+      .eq("id", id)
+      .eq("user_id",user.id)
+      .select()
+      .maybeSingle()
       
       if (error) {
-        console.log(error);
+        console.error(error);
         throw new Error("item could not updated");
       }
+      if (!updatedItem) throw new Error("Item not found or you don't have permission");
+
+      set((state) => ({
+          items: state.items.map((item) =>
+          item.id === id ? updatedItem : item
+      ),
+      error: null,
+    }));
 
         toast.success("Item updated succesfully!");
       
