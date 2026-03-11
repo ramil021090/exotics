@@ -1,12 +1,25 @@
 import Logo from "./Logo";
-import { NavLink } from "react-router-dom";
 import NavList from "./NavList";
 import Logout from "../features/authentication/Logout";
+import Avatar from "../features/authentication/header/Avatar";
+
+import { NavLink, useNavigate } from "react-router-dom";
 import { navList } from "../lists/navList";
 import { Fragment } from "react/jsx-runtime";
-import Avatar from "../features/profile/Avatar";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RxUpdate } from "react-icons/rx";
+import { useState } from "react";
+import SmallModal from "../modals/SmallModal";
 
 const Header = () => {
+  const [openSmallModal, setOpenSmallModal] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleToggle = () => {
+    setOpenSmallModal((prev) => !prev);
+  };
+
   return (
     <div className="sticky top-0 z-20 bg-white border-slate-700 shadow-sm flex justify-between items-center md:h-19 py-2 px-4">
       <Logo classname="text-left md:hidden" />
@@ -26,11 +39,31 @@ const Header = () => {
           ))}
         </ul>
       </div>
-      <div className="flex justify-end items-center">
+      <div className="flex gap-5 justify-end items-center">
         <NavLink to="profile">
           <Avatar />
         </NavLink>
-        <Logout />
+        <button onClick={handleToggle}>
+          <GiHamburgerMenu />
+        </button>
+        {openSmallModal && (
+          <SmallModal onClose={() => setOpenSmallModal(false)}>
+            <div className="flex flex-col">
+              <button
+                onClick={() => {
+                  navigate(`/updateProfile`);
+                  setOpenSmallModal(false);
+                }}
+              >
+                <div className="flex items-center">
+                  <RxUpdate />
+                  Update profile
+                </div>
+              </button>
+              <Logout />
+            </div>
+          </SmallModal>
+        )}
       </div>
     </div>
   );

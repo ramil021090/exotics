@@ -21,7 +21,6 @@ const DisplayTable = ({ data }: { data: Items }) => {
   const { loading } = useExoStore();
   const handleToggle = () => {
     setShowForm((prev) => !prev);
-    console.log("showForm:", showForm);
   };
   return (
     <>
