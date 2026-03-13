@@ -21,7 +21,7 @@ const Header = () => {
   };
 
   return (
-    <div className="sticky top-0 z-20 bg-white border-slate-700 shadow-sm flex justify-between items-center md:h-19 py-2 px-4">
+    <div className="sticky top-0 z-20 bg-white border-slate-700 shadow-xs flex justify-between items-center md:h-19 py-2 px-4">
       <Logo classname="text-left md:hidden" />
       <div className="flex justify-between">
         <ul className=" flex">

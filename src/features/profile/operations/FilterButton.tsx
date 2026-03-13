@@ -1,8 +1,8 @@
 interface FilterButtonProps {
   label?: string[];
-  onClick: (value: string) => void;
+  onClick?: () => void;
 }
-const FilterButton = ({ label, onClick }) => {
+const FilterButton = ({ label, onClick }: FilterButtonProps) => {
   return (
     <>
       <button

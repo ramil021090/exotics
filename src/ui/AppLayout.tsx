@@ -2,6 +2,7 @@ import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
+import Keepers from "../pages/Keepers";
 
 const AppLayout = () => {
   return (
@@ -10,9 +11,12 @@ const AppLayout = () => {
         <Sidebar />
         <div className="flex-1 flex flex-col">
           <Header />
-          <Main>
-            <Outlet />
-          </Main>
+          <div className="flex justify-between">
+            <Main>
+              <Outlet />
+            </Main>
+            <Keepers />
+          </div>
         </div>
       </div>
     </>

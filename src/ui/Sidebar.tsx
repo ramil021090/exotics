@@ -12,7 +12,6 @@ const Sidebar = () => {
     z-50 
     w-64 
     shrink-0 
-    bg-gray-300 
     // overflow-y-auto 
     py-5 
     px-10 
