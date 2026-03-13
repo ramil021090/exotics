@@ -12,7 +12,7 @@ const Avatar = () => {
       <img
         className="w-10 h-10  rounded-full object-cover "
         src={avatar || "../../images/default-avatar.png "}
-        alt="avatar"
+        alt={`avatar of ${username}`}
       />
       <span className="items-center text-center">{username}</span>
     </div>

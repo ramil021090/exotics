@@ -100,7 +100,7 @@ const Button = (props: ButtonProps) => {
   return (
     <div>
       <button
-        className={`shadow-lg border-sky-100 ${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
+        className={`shadow-md border-sky-100 ${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
         onClick={handleClick}
         disabled={isDeleting}
         {...rest}
@@ -111,8 +111,8 @@ const Button = (props: ButtonProps) => {
         </div>
       </button>
       {showConfirm && (
-        <div className="fixed inset-0 backdrop-blur-sm shadow-2xl  flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+        <div className="fixed inset-0 backdrop-blur-sm shadow-md  flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-md max-w-md w-full">
             <div className="p-6">
               <h3 className="text-lg font-semibold text-slate-900 mb-3">
                 Confirm Delete
@@ -122,10 +122,10 @@ const Button = (props: ButtonProps) => {
                 undone.🚫
               </p>
 
-              <div className="flex justify-end gap-3">
+              <div className="flex justify-end gap-3 pr-4">
                 <button
                   type="button"
-                  className="shadow-lg border-sky-100  px-4 py-2 text-gray-700 border bg-gray-100 hover:bg-gray-200 rounded-md transition disabled:opacity-50"
+                  className="shadow-md border-sky-100  px-4 py-2 text-gray-700 border bg-gray-100 hover:bg-gray-200 rounded-md transition disabled:opacity-50"
                   onClick={handleCancelDelete}
                   disabled={isDeleting}
                 >
@@ -133,7 +133,7 @@ const Button = (props: ButtonProps) => {
                 </button>
                 <button
                   type="button"
-                  className="shadow-lg border-sky-100  px-4 py-2 text-white border bg-red-600 hover:bg-red-700 rounded-md transition disabled:opacity-50"
+                  className="shadow-md border-sky-100  px-4 py-2 text-white border bg-red-600 hover:bg-red-700 rounded-md transition disabled:opacity-50"
                   onClick={handleConfirmDelete}
                   disabled={isDeleting}
                 >

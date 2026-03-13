@@ -55,14 +55,14 @@ const Profile = () => {
     <>
       <PersonalInformation />
 
-      <div className="flex justify-end pt-1.5 pb-1 mb-1 shadow-xl">
+      <div className="flex justify-end pt-1.5 pb-1 mb-1 shadow-xs">
         {/* <Title text="Profile" /> */}
         <AddandEditItem />
       </div>
       <div className="flex justify-between">
-        <Subheader title="Collections" />
+        <Subheader title={!items.length ? "No Collections" : "Collections"} />
         <div className="mr-2 mt-2">
-          <DisplayTableOperations />
+          {items.length <= 1 ? null : <DisplayTableOperations />}
         </div>
       </div>
 

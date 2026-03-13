@@ -5,10 +5,10 @@ import NavList from "./NavList";
 const MainNav = () => {
   return (
     <>
-      <nav className="list-none">
+      <nav className="list-none pt-30">
         <ul>
           {navList.map(({ name, icon }) => (
-            <li className="py-1 text-xl" key={name} aria-label="exotic">
+            <li className="pb-3 text-xl" key={name} aria-label="exotic">
               <NavLink to={`/${name}`}>
                 <NavList name={name} icon={icon} />
               </NavLink>

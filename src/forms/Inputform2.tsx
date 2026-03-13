@@ -9,10 +9,16 @@ interface InputForm2Props extends InputHTMLAttributes<HTMLInputElement> {
 
 const Inputform2 = ({ label, errors, register, ...props }: InputForm2Props) => {
   return (
-    <div className="flex justify-between py-1.5 mx-10 pr-10 ">
+    <div className="flex justify-between p-2 gap-2  ">
       <label>{label}</label>
-      {errors && <p className="text-red-600">{errors}</p>}
-      <input className="border rounded-sm px-3 py-2" {...props} {...register} />
+      <div className="flex flex-col">
+        <input
+          className="border rounded-sm  py-2 bg-white"
+          {...props}
+          {...register}
+        />
+        {errors && <p className="text-red-600">{errors}</p>}
+      </div>
     </div>
   );
 };

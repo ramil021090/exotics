@@ -21,7 +21,7 @@ const Sort = ({ options }: SortProps) => {
   return (
     <>
       <select
-        className="m-2 mb-3 p-2 px-10 bg-white rounde-md shadow-lg"
+        className="m-2 mb-3 p-2 bg-white rounde-md shadow-sm"
         onChange={handleChange}
         value={currentSorted}
       >

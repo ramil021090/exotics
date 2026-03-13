@@ -1,9 +1,7 @@
-import React from "react";
-
 const PersonalInformation = () => {
   return (
     <>
-      <p className="text-center h-50 border">cover photo</p>
+      <p className="text-center h-60 border rounded-sm ">cover photo</p>
       <div className="flex">
         <p>profile photo</p>
         <div>

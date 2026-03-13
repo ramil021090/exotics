@@ -61,8 +61,8 @@ const DisplayTable = ({ data }: { data: Items }) => {
       </div>
 
       <div key={data?.id} className=" mb-1 mr-2 p-2 rounded-lg">
-        <div className=" xl:flex gap-4 mb-2">
-          <div className="text-xl">
+        <div className="flex justify-around ">
+          <div className="flex flex-col">
             <div className="">
               {data.isSold ? (
                 <p className="text-red-600 text-8xl font-bold relative top-30 left-0 opacity-50">
