@@ -5,20 +5,14 @@ import UpdatePasswordForgot from "../UpdatePasswordForgot";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuthenticationStore } from "../../../store/useAuthentication.tsx/useAuthenticationStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import DefaultPersonalInformation from "../DefaultPersonalInformation";
-
-type Password = string & { readonly __brand: unique symbol };
-
-export interface UpdateProfileForm {
-  email: string;
-  username: string;
-  password: Password;
-  repeatPassword: Password;
-  avatar: string;
-}
+import type { IFormInput } from "../../../store/useAuthentication.tsx/actions/utility/types";
+import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/UpdateCurrentUser";
+import toast from "react-hot-toast";
 
 const UpdateUserDataform = () => {
+  const [imagePreview, setImagePreview] = useState(false);
   const { user } = useAuthenticationStore();
 
   const getCurrentUser = useAuthenticationStore(
@@ -28,29 +22,43 @@ const UpdateUserDataform = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-  } = useForm<UpdateProfileForm>({
+  } = useForm<IFormInput>({
     defaultValues: {
       email: user?.email || "",
       username: user?.user_metadata?.username || "",
     },
   });
-  const imageFile = watch("avatar")?.[0];
-  const imagePreview = imageFile ? URL.createObjectURL(imageFile) : null;
+
+  const navigate = useNavigate();
+  const updateCurrentUser = useAuthenticationStore(
+    (state) => state.updateCurrentUser,
+  );
+
   useEffect(() => {
     getCurrentUser();
   }, [getCurrentUser]);
 
-  const navigate = useNavigate();
-
-  const onSubmit: SubmitHandler<UpdateProfileForm> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<UpdateProfileForm> = async (data) => {
+    try {
+      await updateCurrentUser({
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+        avatar: data.avatar,
+      });
+      console.log(data);
+      toast.success("Profile updated!");
+      navigate(-1);
+    } catch (error) {
+      console.error(error);
+      toast.error("Update failed!");
+    }
   };
   return (
     <>
       <Subheader title="Update Profile" />
+
       <form
-        className="bg-slate-100  p-10 mt-5  shadow-md rounded-sm "
+        className="bg-white  p-10 mt-5  shadow-lg rounded-sm "
         onSubmit={handleSubmit(onSubmit)}
       >
         <DefaultPersonalInformation user={user} />
@@ -63,28 +71,33 @@ const UpdateUserDataform = () => {
               className="p-2 font-black rounded-sm shadow-md"
               type="file"
               accept="image/*"
-              {...register("avatar", {
-                required: "Image is required!",
-              })}
+              {...register("avatar")}
             />
           </div>
-          {/* <img
-            className="w-10 h-10  rounded-full object-cover "
-            src={"../../images/default-avatar.png "}
-            alt={`avatar`}
-          /> */}
-
           <div>
-            {imagePreview && (
+            {!imagePreview && (
               <img
-                src={imagePreview || "upload avatar"}
-                alt="preview"
-                className=" h-48 w-48 rounded-full"
+                className="w-24 h-24  rounded-full object-cover shadow-sm  "
+                src={"../../images/default-avatar.png "}
+                alt={`avatar`}
               />
             )}
-            {errors && (
-              <p className="text-red-600 min-w-46">{errors?.avatar?.message}</p>
-            )}
+            {
+              // <div>
+              //   {imagePreview && (
+              //     <img
+              //       src={}
+              //       alt="preview"
+              //       className=" h-24 w-24 rounded-full shadow-sm"
+              //     />
+              //   )}
+              //   {errors && (
+              //     <p className="text-red-600 min-w-46">
+              //       {errors?.avatar?.message}
+              //     </p>
+              //   )}
+              // </div>
+            }
           </div>
         </div>
 

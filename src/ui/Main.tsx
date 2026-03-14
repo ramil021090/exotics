@@ -5,7 +5,9 @@ interface MainProps {
 }
 const Main = ({ children }: MainProps) => {
   return (
-    <main className=" bg-white flex-1 overflow-auto mx-35 ">{children}</main>
+    <main className=" bg-white flex-1 overflow-auto mx-35 shadow-lg ">
+      {children}
+    </main>
   );
 };
 

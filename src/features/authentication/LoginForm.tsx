@@ -49,7 +49,7 @@ const LoginForm = () => {
         />
         <InputForm
           // className="inset-shadow-sm bg-white outline outline-offset-2 rounded-sm"
-          value="villahermosa021090"
+          // value="villahermosa021090"
           label="Password"
           type="password"
           autoComplete="new-password"

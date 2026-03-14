@@ -25,7 +25,7 @@ const UpdatePasswordForgot = ({ register, errors }: UpdatePasswordForgot) => {
         label="repeat password"
         type="password"
         autoComplete="new-password"
-        register={register("repeatPassword", {
+        register={register("confirmPassword", {
           required: "Confirm your password!",
           validate: (value, formValues) =>
             value === formValues.password || "Passwords do not match",

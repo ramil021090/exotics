@@ -7,7 +7,7 @@ import Keepers from "../pages/Keepers";
 const AppLayout = () => {
   return (
     <>
-      <div className="flex min-h-screen w-full ">
+      <div className="flex min-h-screen w-full bg-slate-50 ">
         <Sidebar />
         <div className="flex-1 flex flex-col">
           <Header />
