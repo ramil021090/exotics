@@ -8,20 +8,17 @@ import { useAuthenticationStore } from "../../../store/useAuthentication.tsx/use
 import { useEffect, useState } from "react";
 import DefaultPersonalInformation from "../DefaultPersonalInformation";
 import type { IFormInput } from "../../../store/useAuthentication.tsx/actions/utility/types";
-import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/UpdateCurrentUser";
 import toast from "react-hot-toast";
+import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/updateCurrentUser";
 
 const UpdateUserDataform = () => {
   const [imagePreview, setImagePreview] = useState(false);
   const { user } = useAuthenticationStore();
 
-  const getCurrentUser = useAuthenticationStore(
-    (state) => state.getCurrentUser,
-  );
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<IFormInput>({
     defaultValues: {
       email: user?.email || "",
@@ -34,23 +31,22 @@ const UpdateUserDataform = () => {
     (state) => state.updateCurrentUser,
   );
 
+  const getCurrentUser = useAuthenticationStore(
+    (state) => state.getCurrentUser,
+  );
+
   useEffect(() => {
     getCurrentUser();
   }, [getCurrentUser]);
 
   const onSubmit: SubmitHandler<UpdateProfileForm> = async (data) => {
     try {
-      await updateCurrentUser({
-        password: data.password,
-        confirmPassword: data.confirmPassword,
-        avatar: data.avatar,
-      });
-      console.log(data);
-      toast.success("Profile updated!");
-      navigate(-1);
+      const { confirmPassword, ...updateData } = data;
+      await updateCurrentUser(updateData);
+      toast.success("Updated succesfully!");
     } catch (error) {
-      console.error(error);
-      toast.error("Update failed!");
+      console.error("Update failed:", error);
+      toast.error("Failed to update!");
     }
   };
   return (
@@ -63,7 +59,7 @@ const UpdateUserDataform = () => {
       >
         <DefaultPersonalInformation user={user} />
 
-        <UpdatePasswordForgot register={register} errors={errors} />
+        {/* <UpdatePasswordForgot register={register} errors={errors} /> */}
 
         <div className="flex justify-between">
           <div className="">

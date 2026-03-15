@@ -1,18 +1,16 @@
 import { useAuthenticationStore } from "../../../store/useAuthentication.tsx/useAuthenticationStore";
-interface MyMetadata {
-  username?: string;
-  avatar: string;
-}
+
 const Avatar = () => {
   const user = useAuthenticationStore((state) => state.user);
-  const { username, avatar } = user?.user_metadata as MyMetadata;
+  const username = user?.user_metadata?.username;
+  const avatarUrl = user?.user_metadata?.avatar_url;
 
   return (
     <div className="flex justify-center items-center text-center gap-1">
       <img
         className="w-10 h-10  rounded-full object-cover "
-        src={avatar || "../../images/default-avatar.png "}
-        alt={`avatar of ${username}`}
+        src={avatarUrl || "../../images/default-avatar.png "}
+        alt={`avatar of ${username || "user"} `}
       />
       <span className="items-center text-center">{username}</span>
     </div>
