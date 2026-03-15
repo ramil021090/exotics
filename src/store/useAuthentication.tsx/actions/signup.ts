@@ -8,7 +8,16 @@ export const signup = async (
 
   try {
       const { fullName,email,password, gender, username,confirmPassword} = formData;
+
+       if (!fullName) {
+      throw new Error("Full name is required");
+    }
+    
+    if (!email) throw new Error("Email is required");
+    if (!password) throw new Error("Password is required");
+    if (password !== confirmPassword) throw new Error("Passwords do not match");
       const { firstName, lastName } = fullName;
+
 
       const { data, error } = await supabase.auth.signUp({
       email,

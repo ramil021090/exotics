@@ -4,7 +4,7 @@ import { getCurrentUser } from "./actions/getCurrentUser";
 import { login } from "./actions/login";
 import { logout } from "./actions/logout";
 import { signup } from "./actions/signup";
-import { updateCurrentUser } from "./actions/UpdateCurrentUser";
+import { updateCurrentUser } from "./actions/updateCurrentUser";
 
 
 export const useAuthenticationStore = create<AuthState>((set) => ({

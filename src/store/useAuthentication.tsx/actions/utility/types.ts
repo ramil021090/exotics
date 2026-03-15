@@ -13,14 +13,14 @@ export interface FullnameInput {
 }
 
 export interface IFormInput {
-  fullName?: FullnameInput;
+  fullName?: FullnameInput | undefined;
   gender?: "male" | "female" | "other";
   username?: string;
   email?:string;
   password?:Password;
   confirmPassword?: Password;
   user?:User
-  avatar?: string;
+  avatar?: FileList;
 }
 
 
@@ -35,8 +35,8 @@ export interface AuthState {
   logout: () => Promise<void>; 
   signup:(formData:IFormInput)=>Promise<void>
   updateCurrentUser:(data: {
-    password?: string;
-    confirmPassword?: string;
-    avatar?: string;
+    password?: Password;
+    confirmPassword?: Password;
+    avatar?: FileList;
   }) => Promise<void>;
 }
