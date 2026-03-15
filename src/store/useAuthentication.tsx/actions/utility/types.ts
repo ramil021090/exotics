@@ -1,6 +1,6 @@
 import type { User, Session } from '@supabase/supabase-js';
 
-type Password = string & { readonly __brand: unique symbol };
+export type Password = string & { readonly __brand: unique symbol };
 
 export interface Credentials {
   email: string;
@@ -13,14 +13,16 @@ export interface FullnameInput {
 }
 
 export interface IFormInput {
-  fullName: FullnameInput;
-  gender: "male" | "female" | "other";
-  username: string;
-  email:string;
-  password:Password;
-  confirmPassword: Password;
-
+  fullName?: FullnameInput;
+  gender?: "male" | "female" | "other";
+  username?: string;
+  email?:string;
+  password?:Password;
+  confirmPassword?: Password;
+  user?:User
+  avatar?: string;
 }
+
 
 
 export interface AuthState {
@@ -32,4 +34,9 @@ export interface AuthState {
   getCurrentUser:()=>Promise<void>
   logout: () => Promise<void>; 
   signup:(formData:IFormInput)=>Promise<void>
+  updateCurrentUser:(data: {
+    password?: string;
+    confirmPassword?: string;
+    avatar?: string;
+  }) => Promise<void>;
 }
