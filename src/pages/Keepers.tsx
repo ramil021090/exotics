@@ -13,14 +13,16 @@ const Keepers = () => {
     <div className="lg:flex flex-col items-start hidden pt-48">
       <Subheader classname="sticky" title="Invite new Keeper" />
       {addKeeper && <SignupForm />}
-      <button onClick={handleToggle}>
-        <h1 className="flex items-center">
-          Keeper{" "}
-          <span>
-            <GoPlus />
-          </span>
-        </h1>
-      </button>
+      {!addKeeper && (
+        <button onClick={handleToggle}>
+          <h1 className="flex items-center">
+            Keeper{" "}
+            <span>
+              <GoPlus />
+            </span>
+          </h1>
+        </button>
+      )}
     </div>
   );
 };
