@@ -11,11 +11,13 @@ import { RxUpdate } from "react-icons/rx";
 import { useState } from "react";
 import SmallModal from "../../modals/SmallModal";
 import ThemeToggle from "../../darkmode/ThemeToggle";
+import { useDarkMode } from "../../darkmode/useDarkMode";
 
 const Header = () => {
   const [openSmallModal, setOpenSmallModal] = useState(false);
 
   const navigate = useNavigate();
+  useDarkMode();
 
   const handleToggle = () => {
     setOpenSmallModal((prev) => !prev);
