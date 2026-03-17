@@ -1,15 +1,16 @@
-import Logo from "./Logo";
-import NavList from "./NavList";
-import Logout from "../features/authentication/Logout";
-import Avatar from "../features/authentication/header/Avatar";
+import Logo from "../../ui/Logo";
+import NavList from "../../ui/NavList";
+import Logout from "./Logout";
+import Avatar from "./header/Avatar";
 
 import { NavLink, useNavigate } from "react-router-dom";
-import { navList } from "../lists/navList";
+import { navList } from "../../lists/navList";
 import { Fragment } from "react/jsx-runtime";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxUpdate } from "react-icons/rx";
 import { useState } from "react";
-import SmallModal from "../modals/SmallModal";
+import SmallModal from "../../modals/SmallModal";
+import ThemeToggle from "../../darkmode/ThemeToggle";
 
 const Header = () => {
   const [openSmallModal, setOpenSmallModal] = useState(false);
@@ -21,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <div className="sticky top-0 z-20 bg-white border-slate-700 shadow-xs flex justify-between items-center md:h-19 py-2 px-4">
+    <div className="sticky top-0 z-20 bg-white border-slate-700 dark:bg-slate-900 shadow-xs flex justify-between items-center md:h-19 py-2 px-4">
       <Logo classname="text-left md:hidden" />
       <div className="flex justify-between">
         <ul className=" flex">
@@ -48,7 +49,7 @@ const Header = () => {
         </button>
         {openSmallModal && (
           <SmallModal onClose={() => setOpenSmallModal(false)}>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-3">
               <button
                 onClick={() => {
                   navigate(`/updateProfile`);
@@ -61,6 +62,10 @@ const Header = () => {
                 </div>
               </button>
               <Logout />
+              <ThemeToggle
+                setOpenSmallModal={setOpenSmallModal}
+                openSmallModal={openSmallModal}
+              />
             </div>
           </SmallModal>
         )}

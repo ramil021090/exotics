@@ -1,6 +1,7 @@
 import type { UserAttributes } from "@supabase/supabase-js";
 import supabase from "../../../supabase/supabaseClients";
 import type { IFormInput, Password } from "./utility/types";
+import toast from "react-hot-toast";
 
 export interface UpdateProfileForm {
   password?: Password;

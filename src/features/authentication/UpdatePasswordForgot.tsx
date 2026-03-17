@@ -1,15 +1,19 @@
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
 import Inputform2 from "../../forms/Inputform2";
-import type { UpdateProfileForm } from "./header/UpdateUserDataform";
+import type { UpdateProfileForm } from "../../store/useAuthentication.tsx/actions/updateCurrentUser";
+import Title from "../../ui/Title";
+import Button from "../../ui/Button";
+import { useNavigate } from "react-router-dom";
 interface UpdatePasswordForgot {
   register: UseFormRegister<UpdateProfileForm>;
   errors: FieldErrors<UpdateProfileForm>;
 }
 
 const UpdatePasswordForgot = ({ register, errors }: UpdatePasswordForgot) => {
+  const navigate = useNavigate();
   return (
-    <>
-      {" "}
+    <div className="dark:bg-slate-700">
+      <Title text="Update Password" />
       <Inputform2
         label="password"
         type="password"
@@ -30,9 +34,18 @@ const UpdatePasswordForgot = ({ register, errors }: UpdatePasswordForgot) => {
           validate: (value, formValues) =>
             value === formValues.password || "Passwords do not match",
         })}
-        errors={errors?.repeatPassword?.message}
+        errors={errors?.confirmPassword?.message}
       />
-    </>
+      <div className="flex justify-end gap-3 mt-4">
+        <button
+          className="bg-red-400 px-2 rounded-md shadow-md h-10"
+          onClick={() => navigate(-1)}
+        >
+          cancel
+        </button>
+        <Button type="submit" title="update" />
+      </div>
+    </div>
   );
 };
 

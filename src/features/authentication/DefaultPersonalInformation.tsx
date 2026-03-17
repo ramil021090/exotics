@@ -8,7 +8,7 @@ const DefaultPersonalInformation = ({
 }: DefaultPersonalInformationProps) => {
   return (
     <>
-      <div className="px-2 mb-4">
+      <div className="px-2 mb-4 text-xl">
         <div className="flex justify-between">
           <label>Email</label>
           <div className="min-w-46">{user?.email}</div>

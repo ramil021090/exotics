@@ -29,30 +29,32 @@ const DisplayTable = ({ data }: { data: Items }) => {
           <TextModal text="Deleting Item.." />
         </Modal>
       )}
-      <div className="flex  justify-end relative">
+      <div className="flex  justify-end dark:bg-slate-800 relative">
         {showSmallModal && (
           <SmallModal onClose={() => setShowSmallModal(false)}>
-            <Button
-              icon={<RiDeleteBin6Fill />}
-              title="delete"
-              type="button"
-              size="sm"
-              onDelete={async (id) => {
-                await deleteItem(id);
-                setShowSmallModal(false);
-              }}
-              deleteId={data.id}
-            />
-            <Button
-              onToggle={() => {
-                handleToggle();
-                setShowSmallModal(false);
-              }}
-              icon={<MdModeEdit />}
-              title="edit"
-              type="button"
-              size="sm"
-            />
+            <div className="flex flex-col gap-3">
+              <Button
+                icon={<RiDeleteBin6Fill />}
+                title="delete"
+                type="button"
+                size="sm"
+                onDelete={async (id) => {
+                  await deleteItem(id);
+                  setShowSmallModal(false);
+                }}
+                deleteId={data.id}
+              />
+              <Button
+                onToggle={() => {
+                  handleToggle();
+                  setShowSmallModal(false);
+                }}
+                icon={<MdModeEdit />}
+                title="edit"
+                type="button"
+                size="sm"
+              />
+            </div>
           </SmallModal>
         )}
         <button className="px-5" onClick={() => setShowSmallModal((t) => !t)}>
@@ -60,8 +62,11 @@ const DisplayTable = ({ data }: { data: Items }) => {
         </button>
       </div>
 
-      <div key={data?.id} className=" mb-1 mr-2 p-2 rounded-lg">
-        <div className="flex justify-around ">
+      <div
+        key={data?.id}
+        className=" mb-1 mr-2 p-2 rounded-lg dark:bg-slate-800"
+      >
+        <div className="flex justify-around dark:bg-slate-800 ">
           <div className="flex flex-col">
             <div className="">
               {data.isSold ? (

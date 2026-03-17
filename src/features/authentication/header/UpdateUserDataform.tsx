@@ -1,24 +1,26 @@
 import Subheader from "../../../ui/Subheader";
-import Button from "../../../ui/Button";
-import UpdatePasswordForgot from "../UpdatePasswordForgot";
 
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuthenticationStore } from "../../../store/useAuthentication.tsx/useAuthenticationStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import DefaultPersonalInformation from "../DefaultPersonalInformation";
 import type { IFormInput } from "../../../store/useAuthentication.tsx/actions/utility/types";
 import toast from "react-hot-toast";
 import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/updateCurrentUser";
+import UpdateAvatar from "../UpdateAvatar";
+import ThemeToggle from "../../../darkmode/ThemeToggle";
+import UpdatePasswordForgot from "../UpdatePasswordForgot";
 
 const UpdateUserDataform = () => {
-  const [imagePreview, setImagePreview] = useState(false);
+  // const [imagePreview, setImagePreview] = useState(false);
   const { user } = useAuthenticationStore();
 
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
+    reset,
   } = useForm<IFormInput>({
     defaultValues: {
       email: user?.email || "",
@@ -41,73 +43,34 @@ const UpdateUserDataform = () => {
 
   const onSubmit: SubmitHandler<UpdateProfileForm> = async (data) => {
     try {
-      const { confirmPassword, ...updateData } = data;
-      await updateCurrentUser(updateData);
+      await updateCurrentUser({
+        password: data.password,
+        avatar: data.avatar,
+      });
       toast.success("Updated succesfully!");
+      reset();
     } catch (error) {
       console.error("Update failed:", error);
       toast.error("Failed to update!");
+    } finally {
+      navigate(-1);
     }
   };
   return (
-    <>
+    <div className="dark:bg-slate-700">
       <Subheader title="Update Profile" />
 
       <form
-        className="bg-white  p-10 mt-5  shadow-lg rounded-sm "
+        className="bg-white dark:bg-slate-700  p-10 mt-5  shadow-lg rounded-sm "
         onSubmit={handleSubmit(onSubmit)}
       >
         <DefaultPersonalInformation user={user} />
 
-        {/* <UpdatePasswordForgot register={register} errors={errors} /> */}
+        <UpdatePasswordForgot register={register} errors={errors} />
 
-        <div className="flex justify-between">
-          <div className="">
-            <input
-              className="p-2 font-black rounded-sm shadow-md"
-              type="file"
-              accept="image/*"
-              {...register("avatar")}
-            />
-          </div>
-          <div>
-            {!imagePreview && (
-              <img
-                className="w-24 h-24  rounded-full object-cover shadow-sm  "
-                src={"../../images/default-avatar.png "}
-                alt={`avatar`}
-              />
-            )}
-            {
-              // <div>
-              //   {imagePreview && (
-              //     <img
-              //       src={}
-              //       alt="preview"
-              //       className=" h-24 w-24 rounded-full shadow-sm"
-              //     />
-              //   )}
-              //   {errors && (
-              //     <p className="text-red-600 min-w-46">
-              //       {errors?.avatar?.message}
-              //     </p>
-              //   )}
-              // </div>
-            }
-          </div>
-        </div>
-
-        <div className="flex justify-end gap-3 mt-4">
-          <button
-            className="bg-red-400 px-2 rounded-md shadow-md h-10"
-            onClick={() => navigate(-1)}
-          >
-            cancel
-          </button>
-          <Button type="submit" title="update" />
-        </div>
+        <UpdateAvatar register={register} errors={errors} />
       </form>
-    </>
+    </div>
   );
 };
 

@@ -81,13 +81,13 @@ const Button = (props: ButtonProps) => {
   const getVariantStyles = () => {
     switch (variant) {
       case "primary":
-        return "bg-gray-600 text-white border rounded-xl shadow-lg active:scale-95  hover:bg-blue-700";
+        return "bg-gray-600 text-white dark:text-black  border rounded-xl shadow-lg active:scale-95  hover:bg-blue-700";
       case "secondary":
-        return "bg-blue-600 text-white border rounded-xl shadow-lg active:scale-95 hover:bg-green-400 hover:text-black";
+        return "bg-blue-600 text-black  border rounded-xl shadow-lg active:scale-95 hover:bg-green-400 hover:text-black";
       case "success":
-        return "bg-gray-200  rounded-xl shadow-lg active:scale-95 hover:bg-green-700";
+        return "bg-gray-200  rounded-xl dark:text-black  shadow-lg active:scale-95 hover:bg-green-700";
       case "danger":
-        return "bg-red-600 text-white border rounded-xl shadow-lg active:scale-95 hover:bg-green-700";
+        return "bg-red-600 text-white dark:text-black  border rounded-xl shadow-lg active:scale-95 hover:bg-green-700";
       case "default":
         return "mb-1 rounded-md text-black shadow-lg active:scale-95 hover:bg-gray-50 hover:text-gray-700 hover:bg-blue-700";
     }
@@ -100,7 +100,7 @@ const Button = (props: ButtonProps) => {
   return (
     <div>
       <button
-        className={`shadow-md border-sky-100 ${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
+        className={`shadow-md border-sky-100 dark: bg-slate-300 ${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
         onClick={handleClick}
         disabled={isDeleting}
         {...rest}
@@ -111,8 +111,8 @@ const Button = (props: ButtonProps) => {
         </div>
       </button>
       {showConfirm && (
-        <div className="fixed inset-0 backdrop-blur-sm shadow-md  flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-md max-w-md w-full">
+        <div className="fixed inset-0 backdrop-blur-sm shadow-md dark:text-black  flex items-center justify-center z-50 p-4">
+          <div className="bg-white  rounded-lg shadow-md max-w-md w-full">
             <div className="p-6">
               <h3 className="text-lg font-semibold text-slate-900 mb-3">
                 Confirm Delete
@@ -122,10 +122,10 @@ const Button = (props: ButtonProps) => {
                 undone.🚫
               </p>
 
-              <div className="flex justify-end gap-3 pr-4">
+              <div className="flex justify-end gap-3 pr-4 dark:text-white">
                 <button
                   type="button"
-                  className="shadow-md border-sky-100  px-4 py-2 text-gray-700 border bg-gray-100 hover:bg-gray-200 rounded-md transition disabled:opacity-50"
+                  className="shadow-md border-sky-100 dark:text-black dark:bg-slate-300  px-4 py-2 text-gray-700 border bg-gray-200 rounded-md transition disabled:opacity-50"
                   onClick={handleCancelDelete}
                   disabled={isDeleting}
                 >
@@ -133,7 +133,7 @@ const Button = (props: ButtonProps) => {
                 </button>
                 <button
                   type="button"
-                  className="shadow-md border-sky-100  px-4 py-2 text-white border bg-red-600 hover:bg-red-700 rounded-md transition disabled:opacity-50"
+                  className="shadow-md border-sky-100 dark:text-black   px-4 py-2 text-white border bg-red-600 hover:bg-red-700 rounded-md transition disabled:opacity-50"
                   onClick={handleConfirmDelete}
                   disabled={isDeleting}
                 >

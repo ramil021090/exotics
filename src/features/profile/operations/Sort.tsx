@@ -21,14 +21,14 @@ const Sort = ({ options }: SortProps) => {
   return (
     <>
       <select
-        className="m-2 mb-3 p-2 bg-white rounde-md shadow-sm"
+        className="m-2 mb-3 p-2 bg-white rounde-md shadow-sm rounded-md "
         onChange={handleChange}
         value={currentSorted}
       >
         {options.map((option) => (
           <option
             value={option.value}
-            className={` bg-white hover:bg-green-500`}
+            className={` bg-white  hover:bg-green-500`}
             key={option.value}
           >
             {option.label}

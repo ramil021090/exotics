@@ -55,7 +55,7 @@ const Profile = () => {
     <>
       <PersonalInformation />
 
-      <div className="flex justify-end pt-1.5 pb-1 mb-1 shadow-xs">
+      <div className="flex justify-end pt-1.5 pb-1 mb-1 shadow-xs dark:bg-slate-900 ">
         {/* <Title text="Profile" /> */}
         <AddandEditItem />
       </div>
@@ -72,7 +72,7 @@ const Profile = () => {
         render={(item) => (
           <div
             key={item.id}
-            className="  bg-slate-100 mb-1 p-4 rounded-lg shadow-xl "
+            className="  bg-slate-100 mb-1 p-4 rounded-lg shadow-xl dark:bg-slate-800 "
           >
             <DisplayTable data={item} />
           </div>
