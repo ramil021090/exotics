@@ -27,7 +27,6 @@ const LoginForm = () => {
   }, [error, navigate, reset, user]);
 
   const onSubmit = async (data: Credentials) => {
-    console.log("onSubmit called with:", data);
     if (!data.email || !data.password) {
       console.log("Empty fields – returning early");
       return;

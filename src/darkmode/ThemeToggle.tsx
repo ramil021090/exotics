@@ -1,5 +1,5 @@
 import { type Dispatch, type SetStateAction } from "react";
-import { useDarkMode } from "./useDarkmode";
+import { useDarkMode } from "./useDarkMode";
 
 interface ThemeToggleProps {
   openSmallModal: boolean;
