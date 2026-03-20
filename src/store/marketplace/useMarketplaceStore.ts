@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import supabase from "../../supabase/supabaseClients";
 import type { MarketplaceStoreProps } from "./actions/utility/types";
+import { fetchMarketplace } from "./actions/fetchMarketplace";
 
 
-export const useBookingsStore = create<MarketplaceStoreProps>((set,get) => ({
+export const useMarketplaceStore = create<MarketplaceStoreProps>((set,get) => ({
  itemDetails:null,
   itemData: [],
   count:0,
@@ -20,7 +21,7 @@ export const useBookingsStore = create<MarketplaceStoreProps>((set,get) => ({
     // if (page) {
     //   set({ currentPage: page });
     // }
-    await fetchMarketplace(set, get);},
+    await fetchMarketplace(set);},
 
   // prefetchBookingsPage:async(page?:number)=>{
   //   await prefetchBookingsPage( get, page);

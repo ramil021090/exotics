@@ -66,7 +66,7 @@ const UpdateUserDataform = () => {
       >
         <DefaultPersonalInformation user={user} />
 
-        <UpdatePasswordForgot register={register} errors={errors} />
+        {/* <UpdatePasswordForgot register={register} errors={errors} /> */}
 
         <UpdateAvatar register={register} errors={errors} />
       </form>

@@ -7,8 +7,9 @@ interface InputformProps extends InputHTMLAttributes<HTMLInputElement> {
   accept?: string;
   className?: string;
 }
+
 const defaultClassName =
-  "border border-slate-300 py-2 px-1 bg-white rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent";
+  "border border-slate-300 py-2 px-1 dark:text-black bg-white rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent";
 
 const InputForm = ({
   className = defaultClassName,

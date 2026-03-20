@@ -1,8 +1,8 @@
 import type { Items } from "../../../useExoStore/actions/utility/types";
 
 interface User{
-  firstName: string | null;
-  lastName: string | null;
+  first_name: string | null;
+  last_name: string | null;
 }
 
 

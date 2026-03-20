@@ -45,7 +45,7 @@ const BookingDetails = () => {
       <p>
         <strong>Guest:</strong>{" "}
         {users
-          ? `${users?.firstName ?? ""} ${users?.lastName ?? ""}`
+          ? `${users?.first_name ?? ""} ${users?.last_name ?? ""}`
           : "No guest assigned"}
       </p>
       <div>category:{status}</div>

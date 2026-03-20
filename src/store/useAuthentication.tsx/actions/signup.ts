@@ -16,18 +16,18 @@ export const signup = async (
     if (!email) throw new Error("Email is required");
     if (!password) throw new Error("Password is required");
     if (password !== confirmPassword) throw new Error("Passwords do not match");
-      const { firstName, lastName } = fullName;
+      const { first_name, last_name } = fullName;
 
 
       const { data, error } = await supabase.auth.signUp({
       email,
       password,options:{
         data:{
-          firstName,
-          lastName,
+          first_name,
+          last_name,
           username,
           gender,
-          avatar:"",
+          avatar_url:"",
           confirmPassword
         }
       }
