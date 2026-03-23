@@ -8,8 +8,8 @@ export interface Credentials {
 }
 
 export interface FullnameInput {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
 }
 
 export interface IFormInput {

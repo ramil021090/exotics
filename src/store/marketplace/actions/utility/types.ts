@@ -1,15 +1,15 @@
 import type { Items } from "../../../useExoStore/actions/utility/types";
 
 interface User{
-  firstName?: string | null;
-  lastName?: string | null;
+  first_name?: string | null;
+  last_name?: string | null;
   username?:string|null
 }
 
 
 
 
-export interface DataProps {
+export interface DataMarketProps {
   id?: number;
   comment?:string
   status?:string;
@@ -20,18 +20,18 @@ export interface DataProps {
   species_id?:number |null
 }
 
-export type ItemFormData = Omit<DataProps, "id" | "created_at" | "updated_at">;
-export type ItemUpdateData = Partial<Omit<DataProps, "id" | "created_at" | "updated_at">>;
+export type ItemFormData = Omit<DataMarketProps, "id" | "created_at" | "updated_at">;
+export type ItemUpdateData = Partial<Omit<DataMarketProps, "id" | "created_at" | "updated_at">>;
 
 
 
 export interface MarketplaceStoreProps {
 
-  itemDetails: DataProps | null;
+  itemDetails: DataMarketProps | null;
   loading: boolean;
   error: string | null;
   
-  itemData: DataProps[];
+  itemData: DataMarketProps[];
   // selectedItem?: DataProps | null;
   // count:number;
   
@@ -42,7 +42,7 @@ export interface MarketplaceStoreProps {
   
 
 
-  fetchMarketpLace: () => Promise<void>;
+  fetchMarketplace: () => Promise<void>;
   // prefetchBookingsPage: (page?:number) => Promise<void>;
   // getBookingsDetail: (id:number) => Promise<void>;
 

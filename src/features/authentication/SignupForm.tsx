@@ -38,17 +38,17 @@ const SignupForm = () => {
           <div className="flex gap-2 mb-5">
             <InputForm
               label="firstname"
-              {...register("fullName.firstName", {
+              {...register("fullName.first_name", {
                 required: "firstname is required!",
               })}
-              errors={errors?.fullName?.firstName?.message}
+              errors={errors?.fullName?.first_name?.message}
             />
             <InputForm
               label="lastname"
-              {...register("fullName.lastName", {
+              {...register("fullName.last_name", {
                 required: "lastname is required!",
               })}
-              errors={errors?.fullName?.lastName?.message}
+              errors={errors?.fullName?.last_name?.message}
             />
           </div>
           <div className="space-x-2">
@@ -90,6 +90,7 @@ const SignupForm = () => {
             <InputForm
               label="password"
               type="password"
+              value="exotic2026"
               autoComplete="new-password"
               {...register("password", {
                 required: "password is required!",
@@ -104,6 +105,7 @@ const SignupForm = () => {
             <InputForm
               label="confirm password"
               type="password"
+              value="exotic2026"
               autoComplete="new-password"
               {...register("confirmPassword", {
                 required: "please confirm your password!",
