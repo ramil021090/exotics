@@ -25,7 +25,16 @@ const Feeds = () => {
           key={post.id}
           className="my-2 py-2 shadow-2xl  rounded-t-lg bg-white dark:bg-slate-800"
         >
-          <div>user ID:{post.user_id}</div>
+          <div>
+            <img
+              className="w-10 h-10  rounded-full object-cover "
+              src={
+                post.profiles?.avatar_url || "../../images/default-avatar.png "
+              }
+              alt={`avatar of ${post.profiles.id || "user"} `}
+            />
+          </div>
+          <div>name:{post.profiles.first_name}</div>
           <div>Cotent:{post.content}</div>
           {post.image_urls && post.image_urls.length > 0 && (
             <div
