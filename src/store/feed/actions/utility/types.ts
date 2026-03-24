@@ -1,4 +1,3 @@
-// actions/utility/types.ts
 
 import type { ReactNode } from "react";
 
@@ -23,17 +22,25 @@ export interface Comment {
 export interface Post {
   id: number;
   user_id: string;
-  content: string;
-  image_url?: string;
+  content?: string;
+  image_urls?: string[];
   created_at: string;
   likes_count: number;
   profiles: Profile;       
-  comments: ReactNode;     
+  comments?: ReactNode;     
 }
+
+
+export type AddPostData = {
+  content: string;
+  images: FileList | null;
+
+};
 
 export interface FeedStore {
   feeds: Post[] | null;
   loading: boolean;
   error: string | null;
   fetchFeed: () => Promise<void>;
+  addPost:(postData:AddPostData)=>Promise<void>
 }

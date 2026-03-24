@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useMarketplaceStore } from "../../store/marketplace/useMarketplaceStore";
 import Feeds from "../feeds/Feeds";
+import AddPostForm from "../feeds/addPostForm";
 
 const MarketPlace = () => {
   const fetchMarketplace = useMarketplaceStore(
@@ -14,6 +15,8 @@ const MarketPlace = () => {
 
   return (
     <div className="h-screen">
+      <AddPostForm />
+
       <Feeds />
     </div>
   );

@@ -10,7 +10,7 @@ export const fetchFeed = async (
     const { data, error } = await supabase
   .from('posts')
   .select(`
-    *,
+      *,
     profiles:user_id (*),
     comments (*, profiles:user_id (*))
   `)
