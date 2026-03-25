@@ -13,7 +13,7 @@ export const useExoStore = create<ExoStoreProps>((set,) => ({
   error: null,
   loading: false,
 
-  fetchItems: () => fetchItems(set),
+  fetchItems: () => fetchItems(set,),
   
   addItem: (...props) => addItem(set,...props),
   

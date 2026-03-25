@@ -3,7 +3,7 @@ import supabase from "../../../supabase/supabaseClients";
 import type { FeedStore, Post } from "./utility/types";
 
 export const fetchFeed = async (
-  set: (state: Partial<FeedStore>) => void
+  set: (state: Partial<FeedStore>) => void,
 ) => {
   set({ loading: true, error: null });
   try {
