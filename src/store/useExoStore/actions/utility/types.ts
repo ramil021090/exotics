@@ -25,6 +25,7 @@ export interface ExoStoreState {
 
 export interface ExoStoreProps {
   items: Items[];
+
   error?: string | null;
   loading:boolean;
   fetchItems: () => Promise<void>;

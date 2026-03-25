@@ -8,6 +8,7 @@ export interface Profile {
   last_name: string;
   avatar_url: string;
   created_at: string;
+  username?:string
 }
 
 export interface Comment {
@@ -17,6 +18,7 @@ export interface Comment {
   content: string;
   created_at: string;
   profiles: Profile;  
+  username:string
 }
 
 export interface Post {
@@ -26,6 +28,7 @@ export interface Post {
   image_urls?: string[];
   created_at: string;
   likes_count: number;
+  username?:string;
   profiles: Profile;       
   comments?: ReactNode;     
 }
@@ -39,8 +42,10 @@ export type AddPostData = {
 
 export interface FeedStore {
   feeds: Post[] | null;
+  profile:Profile | null;
   loading: boolean;
   error: string | null;
   fetchFeed: () => Promise<void>;
+  fetchProfile:(id:string)=>Promise<void>
   addPost:(postData:AddPostData)=>Promise<void>
 }

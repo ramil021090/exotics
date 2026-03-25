@@ -1,6 +1,5 @@
-import { useEffect } from "react";
-
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import AddandEditItem from "../features/profile/AddandEditItem";
 import DisplayTable from "../features/profile/DisplayTable";
 import DisplayTableOperations from "../features/profile/operations/DisplayTableOperations";
@@ -9,70 +8,90 @@ import { useExoStore } from "../store/useExoStore/useExoStore";
 import ItemsList from "../ui/ItemsList";
 import Subheader from "../ui/Subheader";
 import PersonalInformation from "../features/authentication/header/PersonalInformation";
+import { useNewsFeedStore } from "../store/feed/useNewsFeedStore";
+import { useAuthenticationStore } from "../store/useAuthentication.tsx/useAuthenticationStore";
 
 const Profile = () => {
   const items = useExoStore((state) => state.items);
   const fetchItems = useExoStore((state) => state.fetchItems);
+  const fetchProfile = useNewsFeedStore((state) => state.fetchProfile);
+  const currentUserId = useAuthenticationStore((state) => state.user?.id);
+  const { loading, profile, error } = useNewsFeedStore();
+
   const [searchParams] = useSearchParams();
+  const { id } = useParams<{ id: string }>();
+  const [itemsLoading, setItemsLoading] = useState(false);
 
   useEffect(() => {
-    fetchItems();
-  }, [fetchItems]);
+    if (!id) return;
+    const loadData = async () => {
+      await fetchProfile(id);
+      setItemsLoading(true);
+      await fetchItems();
+      setItemsLoading(false);
+    };
+    loadData();
+  }, [id, fetchProfile, fetchItems]);
 
+  // Filter items belonging to the viewed user
+  const userItems = items.filter((item) => item.user_id === id);
+
+  // Filter and sort operations – now on userItems
   const filteredValue = searchParams.get("filter") || "all";
+  let filteredSpecies: Items[] = userItems;
 
-  let filteredSpecies: Items[] = items;
-
-  if (filteredValue === "all") filteredSpecies = items;
+  if (filteredValue === "all") filteredSpecies = userItems;
   if (filteredValue === "sold")
-    filteredSpecies = items.filter((item) => item.isSold === true);
+    filteredSpecies = userItems.filter((item) => item.isSold === true);
   if (filteredValue === "unsold")
-    filteredSpecies = items.filter((item) => item.isSold === false);
+    filteredSpecies = userItems.filter((item) => item.isSold === false);
 
   const sortBy = searchParams.get("sortBy") || "category-asc";
-
   const [field, direction] = sortBy.split("-");
-
   const modifier = direction === "asc" ? 1 : -1;
 
-  // If field could be either number or string:
   const sortedSpecies = [...filteredSpecies].sort((a, b) => {
     const aVal = a[field];
     const bVal = b[field];
-
-    // Try numeric comparison first
     const numA = Number(aVal);
     const numB = Number(bVal);
-
     if (!isNaN(numA) && !isNaN(numB)) {
       return (numA - numB) * modifier;
     }
-
-    // Fall back to string comparison
     return String(aVal).localeCompare(String(bVal)) * modifier;
   });
+
+  if (loading || itemsLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!profile) return <div>User not found</div>;
+
+  const isOwnProfile = currentUserId === id;
+
   return (
     <>
-      <PersonalInformation />
+      <PersonalInformation profile={profile} />
 
-      <div className="flex justify-end pt-1.5 pb-1 mb-1 shadow-xs dark:bg-slate-900 ">
-        {/* <Title text="Profile" /> */}
-        <AddandEditItem />
-      </div>
+      {isOwnProfile && (
+        <div className="flex justify-end pt-1.5 pb-1 mb-1 shadow-xs dark:bg-slate-900">
+          <AddandEditItem />
+        </div>
+      )}
+
       <div className="flex justify-between">
-        <Subheader title={!items.length ? "No Collections" : "Collections"} />
+        <Subheader
+          title={!userItems.length ? "No Collections" : "Collections"}
+        />
         <div className="mr-2 mt-2">
-          {items.length <= 1 ? null : <DisplayTableOperations />}
+          {userItems.length <= 1 ? null : <DisplayTableOperations />}
         </div>
       </div>
 
       <ItemsList
         data={sortedSpecies}
-        // data={filteredSpecies}
         render={(item) => (
           <div
             key={item.id}
-            className="  bg-slate-100 mb-1 p-4 rounded-lg shadow-xl dark:bg-slate-800 "
+            className="bg-slate-100 mb-1 p-4 rounded-lg shadow-xl dark:bg-slate-800"
           >
             <DisplayTable data={item} />
           </div>

@@ -1,13 +1,17 @@
+import type { Profile } from "../../../store/feed/actions/utility/types";
 import { useAuthenticationStore } from "../../../store/useAuthentication.tsx/useAuthenticationStore";
 
-const PersonalInformation = () => {
-  const user = useAuthenticationStore((state) => state.user);
-  const username = user?.user_metadata?.username;
-  const avatarUrl = user?.user_metadata?.avatar_url;
-  const userId = user?.id;
-  const createdDate = user?.created_at;
+interface PersonalInformationProps {
+  profile?: Profile | null;
+}
 
-  console.log("userID:", user);
+const PersonalInformation = ({ profile }: PersonalInformationProps) => {
+  const user = useAuthenticationStore((state) => state.user);
+  const username = profile?.username || user?.user_metadata?.username;
+  const avatarUrl = profile?.avatar_url || user?.user_metadata?.avatar_url;
+  const userId = profile?.id || user?.id;
+  const createdDate = profile?.created_at || user?.created_at;
+
   return (
     <>
       <p className="text-center h-60 border rounded-sm ">cover photo</p>

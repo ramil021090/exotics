@@ -12,6 +12,7 @@ export const fetchItems= async (set: (state: Partial<ExoStoreProps>) => void) =>
         throw error;
       }
 
+      console.log('fetchItems received data:', data);
       set({ items: data || [] })
     } catch (error) {
       console.error(error)
