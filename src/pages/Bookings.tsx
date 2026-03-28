@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useBookingsStore } from "../store/useBookingsStore/useBookingsStore";
 import Subheader from "../ui/Subheader";
 import BookingsDisplayTable from "../features/bookings/BookingsDisplayTable";
-import Pagination from "../ui/Pagination";
+import Pagination from "../pagination/Pagination";
 import { useSearchParams } from "react-router-dom";
 
 const Bookings = () => {
@@ -17,8 +17,6 @@ const Bookings = () => {
   useEffect(() => {
     fetchBookings(currentPage);
   }, [fetchBookings, currentPage]);
-
-  console.log(bookings);
 
   return (
     <>
