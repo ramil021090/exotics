@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNewsFeedStore } from "../../store/feed/useNewsFeedStore";
 
 import { BiSolidLike } from "react-icons/bi";
@@ -9,15 +9,38 @@ import { useNavigate } from "react-router-dom";
 
 const Feeds = () => {
   const fetchFeed = useNewsFeedStore((state) => state.fetchFeed);
-  const navigate = useNavigate();
+  const loadMore = useNewsFeedStore((state) => state.loadMore);
 
-  const { feeds, loading } = useNewsFeedStore();
+  const { feeds, loading, loadingMore, hasMore } = useNewsFeedStore();
+
+  const navigate = useNavigate();
+  const observerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     fetchFeed();
   }, [fetchFeed]);
 
-  if (loading) return <div className="text-center p-4">Loading...</div>;
+  useEffect(() => {
+    if (!hasMore || loadingMore) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadMore();
+        }
+      },
+      { threshold: 0.5, rootMargin: "100px" }, // triggers a bit earlier
+    );
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasMore, loadingMore, loadMore]);
+
+  if (loading && feeds?.length === 0)
+    return <div className="text-center p-4">Loading...</div>;
 
   return (
     <div className="flex flex-col shadow-2xl  rounded-t-lg my-2  mx-auto space-4">
@@ -77,6 +100,25 @@ const Feeds = () => {
           </div>
         </div>
       ))}
+
+      {hasMore && (
+        <div
+          ref={observerRef}
+          className="h-10 flex justify-center items-center"
+        >
+          {loadingMore && (
+            <div className="text-center text-sm text-gray-500">
+              Loading more posts...
+            </div>
+          )}
+        </div>
+      )}
+
+      {!hasMore && feeds.length > 0 && (
+        <div className="text-center text-sm text-gray-500 py-4">
+          No more posts to load
+        </div>
+      )}
     </div>
   );
 };

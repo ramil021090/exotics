@@ -40,12 +40,20 @@ export type AddPostData = {
 
 };
 
+export const PAGE_SIZE=5
+
+
 export interface FeedStore {
-  feeds: Post[] | null;
+  feeds: Post[] ;
   profile:Profile | null;
+  loadingMore:boolean;
+  hasMore:boolean;
+  page:number;
   loading: boolean;
   error: string | null;
   fetchFeed: () => Promise<void>;
   fetchProfile:(id:string)=>Promise<void>
   addPost:(postData:AddPostData)=>Promise<void>
+  loadMore:()=>Promise<void>
+  reset:()=>void
 }
