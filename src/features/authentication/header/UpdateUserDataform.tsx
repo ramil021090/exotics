@@ -9,8 +9,8 @@ import type { IFormInput } from "../../../store/useAuthentication.tsx/actions/ut
 import toast from "react-hot-toast";
 import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/updateCurrentUser";
 import UpdateAvatar from "../UpdateAvatar";
-import ThemeToggle from "../../../darkmode/ThemeToggle";
-import UpdatePasswordForgot from "../UpdatePasswordForgot";
+// import ThemeToggle from "../../../darkmode/ThemeToggle";
+// import UpdatePasswordForgot from "../UpdatePasswordForgot";
 
 const UpdateUserDataform = () => {
   // const [imagePreview, setImagePreview] = useState(false);

@@ -16,7 +16,7 @@ const Avatar = () => {
 
   return (
     <div
-      className="flex justify-center items-center text-center gap-1"
+      className="flex justify-center items-center text-center gap-1 "
       onClick={goToMyProfile}
     >
       <img

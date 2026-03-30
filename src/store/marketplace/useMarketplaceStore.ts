@@ -1,10 +1,9 @@
 import { create } from "zustand";
-import supabase from "../../supabase/supabaseClients";
 import type { MarketplaceStoreProps } from "./actions/utility/types";
 import { fetchMarketplace } from "./actions/fetchMarketplace";
 
 
-export const useMarketplaceStore = create<MarketplaceStoreProps>((set,get) => ({
+export const useMarketplaceStore = create<MarketplaceStoreProps>((set) => ({
  itemDetails:null,
   itemData: [],
   count:0,

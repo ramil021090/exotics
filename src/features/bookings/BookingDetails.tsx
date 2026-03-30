@@ -24,7 +24,7 @@ const BookingDetails = () => {
   }, [id, getBookingsDetail]);
 
   if (!bookingDetail) return <div>No booking found</div>;
-  const { created_at, species, users, status, comment } = bookingDetail;
+  const { created_at, species, status, comment } = bookingDetail;
 
   return (
     <>
@@ -44,9 +44,9 @@ const BookingDetails = () => {
       <div>category:{species?.price?.toLocaleString()}</div>
       <p>
         <strong>Guest:</strong>{" "}
-        {users
+        {/* {users
           ? `${users?.first_name ?? ""} ${users?.last_name ?? ""}`
-          : "No guest assigned"}
+          : "No guest assigned"} */}
       </p>
       <div>category:{status}</div>
     </>

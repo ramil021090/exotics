@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useMarketplaceStore } from "../../store/marketplace/useMarketplaceStore";
 import Feeds from "../feeds/Feeds";
-import AddPostForm from "../feeds/addPostForm";
+import AddPostForm from "../feeds/AddPostForm";
 
 const MarketPlace = () => {
   const fetchMarketplace = useMarketplaceStore(

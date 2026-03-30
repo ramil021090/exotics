@@ -2,7 +2,7 @@ import Header from "../features/authentication/Header";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
-import Keepers from "../pages/Keepers";
+// import Keepers from "../pages/Keepers";
 
 const AppLayout = () => {
   return (
@@ -15,7 +15,7 @@ const AppLayout = () => {
             <Main>
               <Outlet />
             </Main>
-            <Keepers />
+            {/* <Keepers /> */}
           </div>
         </div>
       </div>

@@ -45,9 +45,9 @@ const BookingsDisplayTable = ({ data }: BookingsDisplayTableProps) => {
           {data.species?.price?.toLocaleString() ?? " "}
         </DisplayRowTableContents>
         <DisplayRowTableContents className="text-left">
-          {data.users?.first_name ?? " "}
+          {/* {data.users?.first_name ?? " "} */}
           {" _"}
-          <span>{data.users?.last_name ?? " "}</span>
+          {/* <span>{data.users?.last_name ?? " "}</span> */}
         </DisplayRowTableContents>
         <DisplayRowTableContents
           className={`border rounded-lg my-1 bg-white  ${statusTagname[data.status as Status]}`}
