@@ -1,5 +1,3 @@
-import React from "react";
-
 const PageNotFound = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen p-4 text-center">

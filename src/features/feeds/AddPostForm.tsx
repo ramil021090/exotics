@@ -36,15 +36,15 @@ const AddPostForm = () => {
           <MdOutlineInsertPhoto size={30} />
         </span>
       </div>
-      {/* <input {...register("content")} className="bg-white text-black" />
+      <input {...register("content")} className="bg-white text-black" />
       <input
         className="p-2 bg-green-400  shadow-sm rounded-sm  font-black"
         type="file"
         accept="image/*"
         multiple
         {...register("images")}
-      /> */}
-      {/* <button>post</button> */}
+      />
+      <button>post</button>
     </form>
   );
 };

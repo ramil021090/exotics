@@ -77,7 +77,7 @@ const Profile = () => {
         </div>
       )}
 
-      <div className="flex justify-between">
+      <div className="md:flex justify-between flex-col ">
         <Subheader
           title={!userItems.length ? "No Collections" : "Collections"}
         />
