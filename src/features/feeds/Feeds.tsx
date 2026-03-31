@@ -6,6 +6,7 @@ import { FaRegCommentDots } from "react-icons/fa";
 import { FaEllipsisVertical } from "react-icons/fa6";
 
 import { useNavigate } from "react-router-dom";
+import Spinner from "../../ui/Spinner";
 
 const Feeds = () => {
   const fetchFeed = useNewsFeedStore((state) => state.fetchFeed);
@@ -29,7 +30,7 @@ const Feeds = () => {
           loadMore();
         }
       },
-      { threshold: 0.5, rootMargin: "100px" }, // triggers a bit earlier
+      { threshold: 0.5, rootMargin: "100px" },
     );
 
     if (observerRef.current) {
@@ -40,7 +41,11 @@ const Feeds = () => {
   }, [hasMore, loadingMore, loadMore]);
 
   if (loading && feeds?.length === 0)
-    return <div className="text-center p-4">Loading...</div>;
+    return (
+      <div className="text-center p-4">
+        <Spinner size={20} />
+      </div>
+    );
 
   return (
     <div className="flex flex-col shadow-2xl  rounded-t-lg my-2  mx-auto space-4">

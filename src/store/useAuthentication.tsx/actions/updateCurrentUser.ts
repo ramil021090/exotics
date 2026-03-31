@@ -70,7 +70,7 @@ try{
     }  
 
     if (currentUser) {
-      set({ user: currentUser });
+      set({ user: currentUser, });
     }
   
 }catch(error){

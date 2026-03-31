@@ -5,7 +5,7 @@ import type { AuthState, IFormInput } from "./utility/types";
 export const signup = async (
     set: (state: Partial<AuthState>) => void,
     formData: IFormInput) => {
-
+set({isLoading:true})
   try {
       const { fullName,email,password, gender, username,confirmPassword} = formData;
 
@@ -28,6 +28,7 @@ export const signup = async (
           username,
           gender,
           avatar_url:"",
+          cover_photo:"",
           confirmPassword
         }
       }
@@ -35,8 +36,8 @@ export const signup = async (
     console.log("data:",data);
     if (error) throw error;
 
-  set({ user: data.user });
-  toast.success("New member succesfully created")
+  set({ user: data.user,isLoading:false });
+  toast.success("Confirmation was sent to the email address")
   } catch (error) {
     console.error(error);
   }

@@ -6,6 +6,7 @@ export const login = async (
     set: (state: Partial<AuthState>) => void,
     { email, password }: Credentials) => {
 
+set({isLoading:true})
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -18,7 +19,8 @@ export const login = async (
       isLoading: false, 
       error: null 
     });
-  toast.success("Login successfully!")
+    const name=data.user?.user_metadata?.username;
+  toast.success(`Welcome, Keeper ${name? name[0].toUpperCase() + name.slice(1) : " "} !`)
   } catch (error) {
     console.error(`Failed to login${error}`);
      set({ 

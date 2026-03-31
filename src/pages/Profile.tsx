@@ -10,6 +10,7 @@ import Subheader from "../ui/Subheader";
 import PersonalInformation from "../features/authentication/header/PersonalInformation";
 import { useNewsFeedStore } from "../store/feed/useNewsFeedStore";
 import { useAuthenticationStore } from "../store/useAuthentication.tsx/useAuthenticationStore";
+import Spinner from "../ui/Spinner";
 
 const Profile = () => {
   const items = useExoStore((state) => state.items);
@@ -61,7 +62,7 @@ const Profile = () => {
     return String(aVal).localeCompare(String(bVal)) * modifier;
   });
 
-  if (loading || itemsLoading) return <div>Loading...</div>;
+  if (loading || itemsLoading) return <Spinner size={15} />;
   if (error) return <div>Error: {error}</div>;
   if (!profile) return <div>User not found</div>;
 

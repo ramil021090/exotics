@@ -2,6 +2,7 @@ import Header from "../features/authentication/Header";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
+import KeepersList from "../features/keepers/KeepersList";
 // import Keepers from "../pages/Keepers";
 
 const AppLayout = () => {
@@ -11,12 +12,10 @@ const AppLayout = () => {
         <Sidebar />
         <div className="flex-1 flex flex-col">
           <Header />
-          <div className="flex justify-between">
-            <Main>
-              <Outlet />
-            </Main>
-            {/* <Keepers /> */}
-          </div>
+          <Main>
+            <Outlet />
+            <KeepersList />
+          </Main>
         </div>
       </div>
     </>

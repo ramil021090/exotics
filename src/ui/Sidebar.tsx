@@ -17,7 +17,9 @@ const Sidebar = () => {
     px-10 
     hidden 
     md:flex
-    md:flex-col"
+    md:flex-col
+    mr-48
+    "
     >
       <Logo />
       <MainNav />

@@ -83,7 +83,7 @@ const Button = (props: ButtonProps) => {
       case "primary":
         return "bg-gray-600 text-white dark:text-black  border rounded-xl shadow-lg active:scale-95  hover:bg-blue-700";
       case "secondary":
-        return "bg-blue-600 text-black  border rounded-xl shadow-lg active:scale-95 hover:bg-green-400 hover:text-black";
+        return " bg-green-600 text-black  border rounded-xl shadow-md hover:bg-green-400";
       case "success":
         return "bg-gray-200  rounded-xl dark:text-black  shadow-lg active:scale-95 hover:bg-green-700";
       case "danger":
@@ -100,12 +100,12 @@ const Button = (props: ButtonProps) => {
   return (
     <div>
       <button
-        className={`shadow-md border-sky-100 dark: bg-slate-300 ${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
+        className={`shadow-md border-sky-100 ${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
         onClick={handleClick}
         disabled={isDeleting}
         {...rest}
       >
-        <div className="flex gap-1">
+        <div className="space-1">
           {icon}
           <span className="text-center">{title}</span>
         </div>
