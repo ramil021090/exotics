@@ -11,8 +11,6 @@ const MarketPlace = () => {
     fetchMarketplace();
   }, [fetchMarketplace]);
 
-  console.log(fetchMarketplace);
-
   return (
     <div className="h-screen">
       <AddPostForm />
