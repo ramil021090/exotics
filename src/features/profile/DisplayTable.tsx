@@ -12,6 +12,7 @@ import Modal from "../../modals/Modal";
 
 import Button from "../../ui/Button";
 import AddandEditItemForm from "./AddandEditItemForm ";
+import Spinner from "../../ui/Spinner";
 
 const DisplayTable = ({ data }: { data: Items }) => {
   const [showForm, setShowForm] = useState(false);
@@ -78,7 +79,7 @@ const DisplayTable = ({ data }: { data: Items }) => {
               )}
             </div>
 
-            <div>{data.category || "loading"}</div>
+            <div>{data.category || <Spinner size={5} />}</div>
             <div>
               {" "}
               {data.created_at
@@ -93,7 +94,7 @@ const DisplayTable = ({ data }: { data: Items }) => {
           </div>
 
           <img
-            src={data.images || "loading"}
+            src={data.images ?? <Spinner size={5} />}
             alt={`species${data.id}`}
             className="max-w-58 h-full mr-2"
           />

@@ -4,6 +4,8 @@ import type {  AuthState} from "./utility/types";
 export const getCurrentUser = async (
     set: (state: Partial<AuthState>) => void) => {
 
+      set({isLoading:true,session:null})
+
   try {
     const { data,error } = await supabase.auth.getSession()
 

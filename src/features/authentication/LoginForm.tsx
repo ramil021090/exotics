@@ -5,6 +5,7 @@ import { useAuthenticationStore } from "../../store/useAuthentication.tsx/useAut
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import type { Credentials } from "../../store/useAuthentication.tsx/actions/utility/types";
+import Spinner from "../../ui/Spinner";
 
 const LoginForm = () => {
   const {
@@ -17,7 +18,7 @@ const LoginForm = () => {
   const login = useAuthenticationStore((state) => state.login);
   const navigate = useNavigate();
   const user = useAuthenticationStore((state) => state.user);
-  const error = useAuthenticationStore((state) => state.error);
+  const { error, isLoading } = useAuthenticationStore();
 
   useEffect(() => {
     if (user && !error) {
@@ -33,29 +34,34 @@ const LoginForm = () => {
     }
     await login(data);
   };
+
+  if (isLoading) return <Spinner size={15} />;
   return (
     <>
       <form
-        className="bg-blue-100 p-10 shadow-lg rounded-md"
+        className="bg-lime-50 p-10 shadow-lg rounded-md"
         onSubmit={handleSubmit(onSubmit)}
       >
         <InputForm
-          // className="inset-shadow-sm bg-white outline outline-offset-2 rounded-sm"
-          // value="ramil@example.com"
           label="Email address"
           {...register("email", { required: "email is required!" })}
           errors={errors?.email?.message}
         />
         <InputForm
-          // className="inset-shadow-sm bg-white outline outline-offset-2 rounded-sm"
-          // value="villahermosa021090"
           label="Password"
           type="password"
           autoComplete="new-password"
           {...register("password", { required: "password is required!" })}
           errors={errors?.password?.message}
         />
-        <Button variant="secondary" title="Login" type="submit" />
+        <div className="flex justify-end">
+          <Button
+            variant="secondary"
+            className="bg-green-400 my-2"
+            title="Login"
+            type="submit"
+          />
+        </div>
       </form>
     </>
   );

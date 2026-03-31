@@ -9,7 +9,7 @@ interface InputformProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const defaultClassName =
-  "border border-slate-300 py-2 px-1 dark:text-black bg-white rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent";
+  "border border-slate-300 bg-white py-2 px-1 dark:text-black rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent";
 
 const InputForm = ({
   className = defaultClassName,
@@ -21,7 +21,7 @@ const InputForm = ({
   ...props
 }: InputformProps) => {
   return (
-    <div className="w-full my-2">
+    <div className="my-2">
       <div>
         {label && <label className="  py-2 px-1  items-center ">{label}</label>}
       </div>

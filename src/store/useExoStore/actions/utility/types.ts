@@ -5,7 +5,7 @@ export interface Items {
   category: string;
   descriptions: string;
   price: number;
-  images: string;
+  images: string ;
   isSold: boolean;
   created_at?: string | number;
   update_at?:string;

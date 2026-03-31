@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 import { useAuthenticationStore } from "../store/useAuthentication.tsx/useAuthenticationStore";
 import { useNavigate } from "react-router-dom";
+import Spinner from "./Spinner";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -29,7 +30,9 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   //.while loading
   if (isLoading)
     return (
-      <h1 className="h-screen flex justify-center items-center">"Loading";</h1>
+      <h1 className="h-screen flex justify-center items-center">
+        <Spinner size={15} />
+      </h1>
     );
 
   if (isAuthenticated) return children;
