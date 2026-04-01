@@ -84,15 +84,15 @@ const Button = (props: ButtonProps) => {
   const getVariantStyles = () => {
     switch (variant) {
       case "primary":
-        return "bg-gray-600 text-white dark:text-black  border rounded-xl shadow-lg active:scale-95  hover:bg-blue-700";
+        return "bg-green-600 text-white dark:text-white  border rounded-xl shadow-md active:scale-95  hover:bg-green-400";
       case "secondary":
         return " bg-green-600 text-black  border rounded-full border-slate-300 shadow-lg hover:bg-green-400";
       case "success":
         return "   dark:text-white active:scale-95 hover:red-500";
       case "danger":
-        return "bg-red-600 text-white dark:text-black  border rounded-xl shadow-lg active:scale-95 hover:bg-green-700";
+        return "bg-red-600 text-white   border rounded-xl shadow-lg active:scale-95 hover:bg-red-400";
       case "default":
-        return "mb-1 rounded-md text-black shadow-lg active:scale-95 hover:bg-gray-50 hover:text-gray-700 hover:bg-blue-700";
+        return "mb-1 rounded-md text-black shadow-lg active:scale-95 hover:bg-gray-50 hover:text-gray-700 hover:bg-lime-400";
     }
   };
 

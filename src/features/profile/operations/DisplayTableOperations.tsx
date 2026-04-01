@@ -3,7 +3,7 @@ import Sort from "./Sort";
 
 const DisplayTableOperations = () => {
   return (
-    <div className="md:flex items-center   dark:text-black">
+    <div className="md:flex items-center shadow-md mb-1.5  dark:text-black">
       <Filter
         filterField="filter"
         options={[

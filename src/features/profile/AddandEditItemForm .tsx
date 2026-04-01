@@ -95,7 +95,7 @@ const AddandEditItemForm: React.FC<AddItemProps> = (props) => {
               />
             </Modal>
           )}
-          <Title text={isEditSession ? "Update Item" : "Add Item"} />
+          <Title text={isEditSession ? "Update Item" : "Add Collection"} />
           <SelectForm
             data={categoryList}
             label="category"
@@ -121,9 +121,10 @@ const AddandEditItemForm: React.FC<AddItemProps> = (props) => {
             />
           ) : (
             <InputForm
+              className=" max-w-22 rounded-md shadow-md px-1 bg-green-500 hover:bg-green-400 "
               type="file"
               placeholder=""
-              label="photo"
+              // label="insert image"
               accept="image/*"
               {...register("images", {
                 required: isEditSession ? false : "image is required!",

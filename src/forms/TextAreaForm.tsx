@@ -1,7 +1,6 @@
 import type { TextareaHTMLAttributes } from "react";
 
-interface TextAreaFormProps
-  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextAreaFormProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   errors?: string;
   placeholder?: string;
@@ -20,7 +19,7 @@ const TextAreaFrom = ({
       <textarea
         {...props}
         placeholder={placeholder}
-        className="border border-slate-300 py-2 px-1 w-70 "
+        className="border border-slate-300 py-2 px-1  w-full shadow-md "
       />
       {errors && <p className="text-red-500">{errors}</p>}
     </div>
