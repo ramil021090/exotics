@@ -30,7 +30,7 @@ export const Filter = ({ filterField, options }: FilterProps) => {
             className={`px-2 mx-2 border rounded-md hover:bg-green-500 shadow-sm ${
               selectedValue === option.value
                 ? "bg-green-500 text-white border-green-500"
-                : "bg-white border-gray-300 hover:bg-gray-50"
+                : "bg- white dark:bg-slate-100 border-slate-300 hover:bg-green-5o0"
             }`}
             onClick={() => {
               handleClick(option.value);
