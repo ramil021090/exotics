@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, type ButtonHTMLAttributes, type ReactNode } from "react";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "title"
+> {
   icon?: React.ReactNode;
-  title: string;
+  title?: ReactNode;
   type: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "success" | "danger" | "default";
   size?: "sm" | "md" | "lg";
@@ -71,7 +74,7 @@ const Button = (props: ButtonProps) => {
       case "sm":
         return "px-3 py-1.5 text-sm";
       case "lg":
-        return "px-6 py-3 text-lg";
+        return "px-6 py-2 text-lg";
       default:
         return "px-4 py-2 text-base";
     }
@@ -83,9 +86,9 @@ const Button = (props: ButtonProps) => {
       case "primary":
         return "bg-gray-600 text-white dark:text-black  border rounded-xl shadow-lg active:scale-95  hover:bg-blue-700";
       case "secondary":
-        return " bg-green-600 text-black  border rounded-xl shadow-md hover:bg-green-400";
+        return " bg-green-600 text-black  border rounded-full border-slate-300 shadow-lg hover:bg-green-400";
       case "success":
-        return "bg-gray-200  rounded-xl dark:text-black  shadow-lg active:scale-95 hover:bg-green-700";
+        return "   dark:text-white active:scale-95 hover:red-500";
       case "danger":
         return "bg-red-600 text-white dark:text-black  border rounded-xl shadow-lg active:scale-95 hover:bg-green-700";
       case "default":
@@ -100,12 +103,12 @@ const Button = (props: ButtonProps) => {
   return (
     <div>
       <button
-        className={`shadow-md border-sky-100 ${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
+        className={` ${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
         onClick={handleClick}
         disabled={isDeleting}
         {...rest}
       >
-        <div className="space-1">
+        <div className="flex gap-1 items-center">
           {icon}
           <span className="text-center">{title}</span>
         </div>

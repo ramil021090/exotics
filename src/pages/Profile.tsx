@@ -69,19 +69,17 @@ const Profile = () => {
   const isOwnProfile = currentUserId === id;
 
   return (
-    <>
+    <div className="flex flex-col">
       <PersonalInformation profile={profile} />
 
-      {isOwnProfile && (
-        <div className="flex justify-end pt-1.5 pb-1 mb-1 shadow-xs dark:bg-slate-900">
-          <AddandEditItem />
-        </div>
-      )}
-
       <div className="md:flex justify-between flex-col ">
-        <Subheader
-          title={!userItems.length ? "No Collections" : "Collections"}
-        />
+        <div className="flex justify-between items-center text-center ">
+          <Subheader
+            title={!userItems.length ? "No Collections" : "Collections"}
+          />
+
+          {isOwnProfile && <AddandEditItem />}
+        </div>
         <div className="mr-2 mt-2">
           {userItems.length <= 1 ? null : <DisplayTableOperations />}
         </div>
@@ -98,7 +96,7 @@ const Profile = () => {
           </div>
         )}
       />
-    </>
+    </div>
   );
 };
 

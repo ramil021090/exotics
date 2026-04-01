@@ -1,8 +1,8 @@
 const KeepersList = () => {
   return (
     <div
-      className="mx-48  hidden 
-    lg:flex flex-col"
+      className=" hidden 
+    md:flex flex-col justify-center items-center flex-1 h-screen  sticky"
     >
       Keepers
       <p>test 1</p>

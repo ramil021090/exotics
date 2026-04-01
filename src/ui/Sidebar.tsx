@@ -10,7 +10,6 @@ const Sidebar = () => {
     self-start 
     h-screen 
     z-50 
-    w-64 
     shrink-0 
     // overflow-y-auto 
     py-5 
@@ -18,7 +17,9 @@ const Sidebar = () => {
     hidden 
     md:flex
     md:flex-col
-    mr-48
+    lg:w-64
+    xl:w-80 
+    2xl:w-120
     "
     >
       <Logo />

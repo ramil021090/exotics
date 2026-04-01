@@ -13,16 +13,19 @@ import Modal from "../../modals/Modal";
 import Button from "../../ui/Button";
 import AddandEditItemForm from "./AddandEditItemForm ";
 import Spinner from "../../ui/Spinner";
+import { createPortal } from "react-dom";
 
 const DisplayTable = ({ data }: { data: Items }) => {
   const [showForm, setShowForm] = useState(false);
   const [showSmallModal, setShowSmallModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const deleteItem = useExoStore((state) => state.deleteItem);
   const { loading } = useExoStore();
   const handleToggle = () => {
     setShowForm((prev) => !prev);
   };
+  if (loading) return <Spinner size={32} />;
   return (
     <>
       {loading && (
@@ -33,9 +36,10 @@ const DisplayTable = ({ data }: { data: Items }) => {
       <div className="flex  justify-end dark:bg-slate-800 relative">
         {showSmallModal && (
           <SmallModal onClose={() => setShowSmallModal(false)}>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col ">
               <Button
                 icon={<RiDeleteBin6Fill />}
+                variant="success"
                 title="delete"
                 type="button"
                 size="sm"
@@ -51,6 +55,7 @@ const DisplayTable = ({ data }: { data: Items }) => {
                   setShowSmallModal(false);
                 }}
                 icon={<MdModeEdit />}
+                variant="success"
                 title="edit"
                 type="button"
                 size="sm"
@@ -58,18 +63,15 @@ const DisplayTable = ({ data }: { data: Items }) => {
             </div>
           </SmallModal>
         )}
-        <button className="px-5" onClick={() => setShowSmallModal((t) => !t)}>
+        <button className=" mb-2" onClick={() => setShowSmallModal((t) => !t)}>
           <FaEllipsisVertical />
         </button>
       </div>
 
-      <div
-        key={data?.id}
-        className=" mb-1 mr-2 p-2 rounded-lg dark:bg-slate-800"
-      >
-        <div className="flex justify-around dark:bg-slate-800 ">
+      <div key={data?.id} className=" mb-1   rounded-lg dark:bg-slate-800">
+        <div className=" flex justify-between dark:bg-slate-800 relative ">
           <div className="flex flex-col">
-            <div className="">
+            {/* <div className="">
               {data.isSold ? (
                 <p className="text-red-600 text-8xl font-bold relative top-30 left-0 opacity-50">
                   Sold
@@ -77,7 +79,7 @@ const DisplayTable = ({ data }: { data: Items }) => {
               ) : (
                 " "
               )}
-            </div>
+            </div> */}
 
             <div>{data.category || <Spinner size={5} />}</div>
             <div>
@@ -96,9 +98,31 @@ const DisplayTable = ({ data }: { data: Items }) => {
           <img
             src={data.images ?? <Spinner size={5} />}
             alt={`species${data.id}`}
-            className="max-w-58 h-full mr-2"
+            className={`w-24 h-24    
+                      sm:w-32 sm:h-32                     
+                      md:w-40 md:h-40                    
+                      lg:w-48 lg:h-48                     
+                      xl:w-56 xl:h-56    
+                      rounded-sm
+                      shadow-md
+                      object-cover cursor-pointer
+            `}
+            onClick={() => setIsOpen(true)}
           />
         </div>
+        {isOpen &&
+          createPortal(
+            <div
+              className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 cursor-pointer"
+              onClick={() => setIsOpen(false)}
+            >
+              <img
+                src={data.images ?? <Spinner size={5} />}
+                className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
+              />
+            </div>,
+            document.body,
+          )}
         {showForm && (
           <Modal key={data.id}>
             <AddandEditItemForm
