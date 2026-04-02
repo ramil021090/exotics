@@ -6,7 +6,7 @@ export interface UpdateProfileForm {
   password?: Password;
   confirmPassword?: Password;
   avatar?: FileList;
-  username?:string
+  username:string
 }
 
 export const updateCurrentUser=async(
