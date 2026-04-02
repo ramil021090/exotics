@@ -12,7 +12,7 @@ interface UpdatePasswordForgot {
 const UpdatePasswordForgot = ({ register, errors }: UpdatePasswordForgot) => {
   const navigate = useNavigate();
   return (
-    <div className="dark:bg-slate-700">
+    <>
       <Title text="Update Password" />
       <Inputform2
         label="password"
@@ -45,7 +45,7 @@ const UpdatePasswordForgot = ({ register, errors }: UpdatePasswordForgot) => {
         </button>
         <Button type="submit" title="update" />
       </div>
-    </div>
+    </>
   );
 };
 

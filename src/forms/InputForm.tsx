@@ -21,7 +21,7 @@ const InputForm = ({
   ...props
 }: InputformProps) => {
   return (
-    <div className="my-2 relative ">
+    <div className="my-2">
       <div>
         {label && <label className="  pointer-events-none">{label}</label>}
       </div>
@@ -30,7 +30,7 @@ const InputForm = ({
         placeholder={placeholder}
         accept={accept}
         type={type}
-        className={`outline-none ${className}`}
+        className={`${className}`}
       />
 
       {errors && <p className="text-red-500">{errors}</p>}
