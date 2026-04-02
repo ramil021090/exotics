@@ -3,7 +3,7 @@ import Subheader from "../../../ui/Subheader";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useAuthenticationStore } from "../../../store/useAuthentication.tsx/useAuthenticationStore";
 import DefaultPersonalInformation from "../DefaultPersonalInformation";
-import type { IFormInput } from "../../../store/useAuthentication.tsx/actions/utility/types";
+// import type { IFormInput } from "../../../store/useAuthentication.tsx/actions/utility/types";
 import toast from "react-hot-toast";
 import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/updateCurrentUser";
 // import UpdateAvatar from "../UpdateAvatar";
@@ -22,7 +22,7 @@ const UpdateUserDataform = ({ onCancel }: UpdateUserDataformProps) => {
     handleSubmit,
     // formState: { errors },
     reset,
-  } = useForm<IFormInput>({
+  } = useForm<UpdateProfileForm>({
     defaultValues: {
       email: user?.email || "",
       username: user?.user_metadata?.username || "",
