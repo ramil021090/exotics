@@ -13,7 +13,6 @@ interface ButtonProps extends Omit<
   deleteId?: number;
   onToggle?: () => void;
   onDelete?: (id: number) => Promise<void>;
-  onClose?: () => void;
 }
 const Button = (props: ButtonProps) => {
   const {

@@ -13,6 +13,7 @@ export const updateCurrentUser=async(
   set: (state: Partial<IFormInput>) => void,
    { password,username, avatar }: UpdateProfileForm
 )=>{
+  set({isLoading:true})
 try{
 
 
@@ -70,7 +71,7 @@ try{
     }  
 
     if (currentUser) {
-      set({ user: currentUser, });
+      set({ user: currentUser,isLoading:false });
     }
   
 }catch(error){
