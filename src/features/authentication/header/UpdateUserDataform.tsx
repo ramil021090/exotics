@@ -5,13 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useAuthenticationStore } from "../../../store/useAuthentication.tsx/useAuthenticationStore";
 import DefaultPersonalInformation from "../DefaultPersonalInformation";
 import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/utility/types";
-import toast from "react-hot-toast";
+
 import UpdateAvatar from "../UpdateAvatar";
-// import ThemeToggle from "../../../darkmode/ThemeToggle";
-// import UpdatePasswordForgot from "../UpdatePasswordForgot";
+import toast from "react-hot-toast";
 
 const UpdateUserDataform = () => {
-  // const [imagePreview, setImagePreview] = useState(false);
   const { user } = useAuthenticationStore();
 
   const {
