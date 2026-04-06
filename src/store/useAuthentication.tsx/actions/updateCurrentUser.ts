@@ -1,6 +1,7 @@
 import type { UserAttributes } from "@supabase/supabase-js";
 import supabase from "../../../supabase/supabaseClients";
-import type { IFormInput, Password } from "./utility/types";
+import type { IFormInput, UpdateProfileForm } from "./utility/types";
+
 
 export interface UpdateProfileForm {
   password?: Password;

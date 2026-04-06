@@ -11,6 +11,13 @@ export interface FullnameInput {
   first_name: string;
   last_name: string;
 }
+export interface UpdateProfileForm {
+  password?: Password;
+  confirmPassword?: Password;
+  avatar?: FileList;
+  username?:string
+  email:string
+}
 
 export interface IFormInput {
   fullName?: FullnameInput | undefined;
