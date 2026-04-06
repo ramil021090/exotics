@@ -1,7 +1,7 @@
 import type { User } from "@supabase/supabase-js";
 import InputForm from "../../forms/InputForm";
 import type { UseFormRegister } from "react-hook-form";
-import type { UpdateProfileForm } from "../../store/useAuthentication.tsx/actions/updateCurrentUser";
+import type { UpdateProfileForm } from "../../store/useAuthentication.tsx/actions/utility/types";
 
 interface DefaultPersonalInformationProps {
   user: User | null;

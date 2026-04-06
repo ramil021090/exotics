@@ -6,17 +6,19 @@ import DefaultPersonalInformation from "../DefaultPersonalInformation";
 import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/utility/types";
 import toast from "react-hot-toast";
 import UpdateAvatar from "../UpdateAvatar";
-// import ThemeToggle from "../../../darkmode/ThemeToggle";
-// import UpdatePasswordForgot from "../UpdatePasswordForgot";
+import Spinner from "../../../ui/Spinner";
+import Button from "../../../ui/Button";
+interface UpdateUserDataformProps {
+  onCancel: () => void;
+}
 
-const UpdateUserDataform = () => {
-  // const [imagePreview, setImagePreview] = useState(false);
+const UpdateUserDataform = ({ onCancel }: UpdateUserDataformProps) => {
   const { user } = useAuthenticationStore();
 
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
     reset,
   } = useForm<UpdateProfileForm>({
     defaultValues: {
@@ -56,7 +58,7 @@ const UpdateUserDataform = () => {
 
         {/* <UpdatePasswordForgot register={register} errors={errors} /> */}
 
-        {/* <UpdateAvatar register={register} errors={errors} /> */}
+        <UpdateAvatar register={register} errors={errors} />
         <div className="flex justify-between">
           <Button
             variant="danger"
