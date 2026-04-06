@@ -44,7 +44,10 @@ const Header = () => {
                   setOpenSmallModal(false);
                 }}
               >
-                <div className="flex items-center">
+                <div
+                  className="flex items-center"
+                  onClick={() => setOpenModal(true)}
+                >
                   <RxUpdate />
                   Update profile
                 </div>

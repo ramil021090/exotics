@@ -16,7 +16,7 @@ export interface UpdateProfileForm {
   confirmPassword?: Password;
   avatar?: FileList;
   username?:string
-  email:string
+  email?:string
 }
 
 export interface IFormInput {
@@ -46,6 +46,7 @@ export interface AuthState {
     password?: Password;
     confirmPassword?: Password;
     avatar?: FileList;
-    username?:string
+    username?:string;
+    email?:string
   }) => Promise<void>;
 }

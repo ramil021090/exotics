@@ -3,11 +3,9 @@ import Subheader from "../../../ui/Subheader";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useAuthenticationStore } from "../../../store/useAuthentication.tsx/useAuthenticationStore";
 import DefaultPersonalInformation from "../DefaultPersonalInformation";
-// import type { IFormInput } from "../../../store/useAuthentication.tsx/actions/utility/types";
+import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/utility/types";
 import toast from "react-hot-toast";
-import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/updateCurrentUser";
-// import UpdateAvatar from "../UpdateAvatar";
-// import UpdatePasswordForgot from "../UpdatePasswordForgot";
+import UpdateAvatar from "../UpdateAvatar";
 import Spinner from "../../../ui/Spinner";
 import Button from "../../../ui/Button";
 interface UpdateUserDataformProps {
@@ -20,7 +18,7 @@ const UpdateUserDataform = ({ onCancel }: UpdateUserDataformProps) => {
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
     reset,
   } = useForm<UpdateProfileForm>({
     defaultValues: {
@@ -60,7 +58,7 @@ const UpdateUserDataform = ({ onCancel }: UpdateUserDataformProps) => {
 
         {/* <UpdatePasswordForgot register={register} errors={errors} /> */}
 
-        {/* <UpdateAvatar register={register} errors={errors} /> */}
+        <UpdateAvatar register={register} errors={errors} />
         <div className="flex justify-between">
           <Button
             variant="danger"

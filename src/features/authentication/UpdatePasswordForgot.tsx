@@ -1,9 +1,9 @@
 import type { UseFormRegister, FieldErrors } from "react-hook-form";
 import Inputform2 from "../../forms/Inputform2";
-import type { UpdateProfileForm } from "../../store/useAuthentication.tsx/actions/updateCurrentUser";
 import Title from "../../ui/Title";
 import Button from "../../ui/Button";
 import { useNavigate } from "react-router-dom";
+import type { UpdateProfileForm } from "../../store/useAuthentication.tsx/actions/utility/types";
 interface UpdatePasswordForgot {
   register: UseFormRegister<UpdateProfileForm>;
   errors: FieldErrors<UpdateProfileForm>;

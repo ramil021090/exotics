@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { AuthState, Credentials, IFormInput } from "./actions/utility/types";
+import type { AuthState, Credentials, IFormInput, UpdateProfileForm } from "./actions/utility/types";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import { login } from "./actions/login";
 import { logout } from "./actions/logout";
@@ -17,6 +17,6 @@ export const useAuthenticationStore = create<AuthState>((set) => ({
   logout:async()=>{await logout(set)},
   getCurrentUser:async()=>{await getCurrentUser(set)},
   signup: async(formData:IFormInput)=>{await signup(set,formData)},
-  updateCurrentUser: (userData) => updateCurrentUser(set, userData)
+  updateCurrentUser: (userData:UpdateProfileForm) => updateCurrentUser(set, userData)
     
   }))
