@@ -105,7 +105,10 @@ const DisplayTable = ({ data }: { data: Items }) => {
                       xl:w-56 xl:h-56    
                       rounded-sm
                       shadow-md
-                      object-cover cursor-pointer
+                      object-cover 
+                      cursor-pointer
+                      transition-transform
+                      hover:scale-105
             `}
             onClick={() => setIsOpen(true)}
           />

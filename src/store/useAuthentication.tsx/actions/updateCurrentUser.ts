@@ -3,11 +3,19 @@ import supabase from "../../../supabase/supabaseClients";
 import type { IFormInput, UpdateProfileForm } from "./utility/types";
 
 
+export interface UpdateProfileForm {
+  password?: Password;
+  confirmPassword?: Password;
+  avatar?: FileList;
+  username?:string
+  email:string
+}
 
 export const updateCurrentUser=async(
   set: (state: Partial<IFormInput>) => void,
    { password,username, avatar }: UpdateProfileForm
 )=>{
+  set({isLoading:true})
 try{
 
 
@@ -65,7 +73,7 @@ try{
     }  
 
     if (currentUser) {
-      set({ user: currentUser, });
+      set({ user: currentUser,isLoading:false });
     }
   
 }catch(error){

@@ -28,6 +28,7 @@ export interface IFormInput {
   confirmPassword?: Password;
   user?:User
   avatar?: FileList;
+  isLoading:boolean
 }
 
 
@@ -45,5 +46,6 @@ export interface AuthState {
     password?: Password;
     confirmPassword?: Password;
     avatar?: FileList;
+    username?:string
   }) => Promise<void>;
 }

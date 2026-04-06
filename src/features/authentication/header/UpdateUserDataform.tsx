@@ -1,21 +1,22 @@
 import Subheader from "../../../ui/Subheader";
 
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { useAuthenticationStore } from "../../../store/useAuthentication.tsx/useAuthenticationStore";
 import DefaultPersonalInformation from "../DefaultPersonalInformation";
 import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/utility/types";
-
-import UpdateAvatar from "../UpdateAvatar";
 import toast from "react-hot-toast";
+import UpdateAvatar from "../UpdateAvatar";
+// import ThemeToggle from "../../../darkmode/ThemeToggle";
+// import UpdatePasswordForgot from "../UpdatePasswordForgot";
 
 const UpdateUserDataform = () => {
+  // const [imagePreview, setImagePreview] = useState(false);
   const { user } = useAuthenticationStore();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
     reset,
   } = useForm<UpdateProfileForm>({
     defaultValues: {
@@ -24,41 +25,57 @@ const UpdateUserDataform = () => {
     },
   });
 
-  const navigate = useNavigate();
   const updateCurrentUser = useAuthenticationStore(
     (state) => state.updateCurrentUser,
   );
+  const { isLoading } = useAuthenticationStore();
 
   const onSubmit: SubmitHandler<UpdateProfileForm> = async (data) => {
     try {
       await updateCurrentUser({
         password: data.password,
         avatar: data.avatar,
+        username: data.username,
       });
-      toast.success("Updated succesfully!");
+      toast.success("Update succesfully!");
       reset();
     } catch (error) {
       console.error("Update failed:", error);
       toast.error("Failed to update!");
-    } finally {
-      navigate(-1);
     }
   };
+  if (!user) {
+    return <Spinner size={24} />;
+  }
   return (
-    <div className="dark:bg-slate-700">
+    <>
       <Subheader title="Update Profile" />
 
-      <form
-        className="bg-white dark:bg-slate-700  p-10 mt-5  shadow-lg rounded-sm "
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <DefaultPersonalInformation user={user} />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <DefaultPersonalInformation register={register} user={user} />
 
         {/* <UpdatePasswordForgot register={register} errors={errors} /> */}
 
-        <UpdateAvatar register={register} errors={errors} />
+        {/* <UpdateAvatar register={register} errors={errors} /> */}
+        <div className="flex justify-between">
+          <Button
+            variant="danger"
+            title="cancel"
+            type="reset"
+            onClick={() => {
+              reset();
+              onCancel();
+            }}
+          />
+          <Button
+            variant="primary"
+            title="update"
+            type="submit"
+            disabled={isLoading}
+          />
+        </div>
       </form>
-    </div>
+    </>
   );
 };
 
