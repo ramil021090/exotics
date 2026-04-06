@@ -4,7 +4,7 @@ interface SubheaderProps {
 }
 const Subheader = ({ title, classname }: SubheaderProps) => {
   return (
-    <div className={`text-3xl p-3  font-medium ${classname} `}>{title}</div>
+    <div className={` text-center font-bold mb-2 ${classname} `}>{title}</div>
   );
 };
 

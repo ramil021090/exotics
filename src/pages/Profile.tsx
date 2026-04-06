@@ -69,7 +69,7 @@ const Profile = () => {
   const isOwnProfile = currentUserId === id;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mx-1">
       <PersonalInformation profile={profile} />
 
       <div className="md:flex justify-between flex-col ">

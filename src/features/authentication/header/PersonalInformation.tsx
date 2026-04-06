@@ -21,26 +21,34 @@ const PersonalInformation = ({ profile }: PersonalInformationProps) => {
     : "";
   return (
     <>
-      <p className="text-center h-60 w-auto border rounded-sm ">cover photo</p>
-      <div className="flex my-3 items-center">
-        <img
-          className="w-16 h-16    
-                      xs:w-24 xs:h-24
-                      sm:w-32 sm:h-32                     
-                      md:w-40 md:h-40                    
-                      lg:w-48 lg:h-48                     
-                      xl:w-56 xl:h-56    
-                      rounded-full object-cover
-                    "
-          src={avatarUrl || "../../images/default-avatar.png "}
-          alt={`avatar of ${username || "user"} `}
-        />
+      <p className="text-center h-60 w-auto border rounded-sm shadow-md pb-1 mx-1 ">
+        cover photo
+      </p>
+      <div className="flex my-3 items-center shadow-md pb-2">
+        <div className="mx-2 ">
+          <img
+            className="w-16 h-16    
+          xs:w-24 xs:h-24
+          sm:w-32 sm:h-32                     
+          md:w-40 md:h-40                    
+          lg:w-48 lg:h-48                     
+          xl:w-56 xl:h-56    
+          rounded-full object-cover
+          "
+            src={avatarUrl || "../../images/default-avatar.png "}
+            alt={`avatar of ${username || "user"} `}
+          />
+          <div className="my-2 text-xs md:hidden flex flex-col">
+            <p>member since {date}</p>
+            <p>popularity/likes</p>
+          </div>
+        </div>
         <div className="mx-2 ">
           <p className="font-bold text-lg">{name}</p>
-          <p className="font-sans text-md border-slate-300 bg-white shadow-xs p-2  dark:bg-slate-900">
+          <p className="font-sans text-md border-slate-300 bg-white shadow-sm dark:shadow-sm p-2 dark:shadow-slate-300  dark:bg-slate-900">
             ID: {userId}
           </p>
-          <div className="my-2">
+          <div className="my-2 hidden md:flex flex-col">
             <p>member since {date}</p>
             <p>popularity/likes</p>
           </div>

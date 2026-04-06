@@ -1,7 +1,7 @@
 import Logout from "./Logout";
 import Avatar from "./header/Avatar";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { navList } from "../../lists/navList";
 import { Fragment } from "react/jsx-runtime";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -10,11 +10,13 @@ import { useState } from "react";
 import SmallModal from "../../modals/SmallModal";
 import ThemeToggle from "../../darkmode/ThemeToggle";
 import { useDarkMode } from "../../darkmode/useDarkMode";
+import UpdateUserDataform from "./header/UpdateUserDataform";
+import Modal from "../../modals/Modal";
 
 const Header = () => {
   const [openSmallModal, setOpenSmallModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
-  const navigate = useNavigate();
   useDarkMode();
 
   const handleToggle = () => {
@@ -38,7 +40,7 @@ const Header = () => {
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => {
-                  navigate(`/updateProfile`);
+                  setOpenModal(true);
                   setOpenSmallModal(false);
                 }}
               >
@@ -47,7 +49,10 @@ const Header = () => {
                   Update profile
                 </div>
               </button>
-              <div className="flex justify-between">
+              <div
+                className="flex justify-between"
+                onClick={() => setOpenSmallModal(false)}
+              >
                 <ul className=" ">
                   {navList.slice(1).map((data) => (
                     <Fragment key={data.id}>
@@ -71,6 +76,11 @@ const Header = () => {
           </SmallModal>
         )}
       </div>
+      {openModal && (
+        <Modal>
+          <UpdateUserDataform onCancel={() => setOpenModal(false)} />
+        </Modal>
+      )}
     </div>
   );
 };

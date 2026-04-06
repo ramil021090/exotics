@@ -14,7 +14,7 @@ const AddandEditItem = () => {
   return (
     <div className="m-2 pt-1.5 pb-1 mb-1   dark:bg-slate-900 ">
       <Button
-        title={<FaPlusCircle />}
+        title={<FaPlusCircle size={32} />}
         variant="success"
         type="button"
         onClick={handleToggle}

@@ -11,7 +11,6 @@ import Bookings from "./pages/Bookings";
 import { Toaster } from "react-hot-toast";
 import BookingDetails from "./features/bookings/BookingDetails";
 import ProtectedRoute from "./ui/ProtectedRoute";
-import UpdateUserDataform from "./features/authentication/header/UpdateUserDataform";
 
 const App = () => {
   return (
@@ -53,7 +52,6 @@ const App = () => {
             <Route path="keepers" element={<Keepers />} />
             <Route path="bookings" element={<Bookings />} />
             <Route path="bookingsDetails/:id" element={<BookingDetails />} />
-            <Route path="updateProfile" element={<UpdateUserDataform />} />
 
             <Route path="settings" element={<Settings />} />
           </Route>
