@@ -1,8 +1,8 @@
 import Title from "../../ui/Title";
-import type { UpdateProfileForm } from "../../store/useAuthentication.tsx/actions/updateCurrentUser";
 import type { FieldErrors, UseFormRegister } from "react-hook-form";
 import Button from "../../ui/Button";
 import { useNavigate } from "react-router-dom";
+import type { UpdateProfileForm } from "../../store/useAuthentication.tsx/actions/utility/types";
 
 interface UpdateAvatarProps {
   register: UseFormRegister<UpdateProfileForm>;
@@ -17,7 +17,7 @@ const UpdateAvatar = ({ register }: UpdateAvatarProps) => {
       <div className="">
         <div>
           <input
-            className="p-2 bg-green-400  shadow-sm rounded-sm  font-black"
+            className="p-2 bg-green-400  shadow-sm rounded-sm  max-w-25 font-black"
             type="file"
             accept="image/*"
             {...register("avatar")}

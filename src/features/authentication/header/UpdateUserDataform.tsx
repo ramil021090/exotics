@@ -3,11 +3,9 @@ import Subheader from "../../../ui/Subheader";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuthenticationStore } from "../../../store/useAuthentication.tsx/useAuthenticationStore";
-import { useEffect } from "react";
 import DefaultPersonalInformation from "../DefaultPersonalInformation";
-import type { IFormInput } from "../../../store/useAuthentication.tsx/actions/utility/types";
+import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/utility/types";
 import toast from "react-hot-toast";
-import type { UpdateProfileForm } from "../../../store/useAuthentication.tsx/actions/updateCurrentUser";
 import UpdateAvatar from "../UpdateAvatar";
 // import ThemeToggle from "../../../darkmode/ThemeToggle";
 // import UpdatePasswordForgot from "../UpdatePasswordForgot";
@@ -21,7 +19,7 @@ const UpdateUserDataform = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IFormInput>({
+  } = useForm<UpdateProfileForm>({
     defaultValues: {
       email: user?.email || "",
       username: user?.user_metadata?.username || "",
@@ -32,14 +30,6 @@ const UpdateUserDataform = () => {
   const updateCurrentUser = useAuthenticationStore(
     (state) => state.updateCurrentUser,
   );
-
-  const getCurrentUser = useAuthenticationStore(
-    (state) => state.getCurrentUser,
-  );
-
-  useEffect(() => {
-    getCurrentUser();
-  }, [getCurrentUser]);
 
   const onSubmit: SubmitHandler<UpdateProfileForm> = async (data) => {
     try {
