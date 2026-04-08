@@ -1,11 +1,8 @@
-interface LogoProps {
-  classname?: string;
-}
-const Logo = ({ classname }: LogoProps) => {
+const Logo = () => {
   return (
     <>
       <img
-        className={`h-24 w-20  mb-6 shrink ${classname}`}
+        className={`h-16 md:h-24 w-auto  my-0.5 shrink `}
         src="../images/rocketride.png"
         alt="rocketride"
       />

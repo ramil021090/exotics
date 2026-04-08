@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import type { AddPostData } from "../../store/feed/actions/utility/types";
-import { useNewsFeedStore } from "../../store/feed/useNewsFeedStore";
+import type { AddPostData } from "../../../store/feed/actions/utility/types";
+import { useNewsFeedStore } from "../../../store/feed/useNewsFeedStore";
 import { FaCameraRetro } from "react-icons/fa";
 import { MdOutlineInsertPhoto } from "react-icons/md";
 

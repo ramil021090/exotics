@@ -35,7 +35,7 @@ const MainNav = () => {
                   : "#"
                 : `/${name}`;
             return (
-              <li className="pb-3 text-xl" key={name} aria-label="exotic">
+              <li className="pb-4 text-2xl" key={name} aria-label="exotic">
                 <NavLink to={linkTo}>
                   <NavList name={name} icon={icon} />
                 </NavLink>
