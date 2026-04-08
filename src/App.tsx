@@ -11,6 +11,7 @@ import { Toaster } from "react-hot-toast";
 import BookingDetails from "./features/bookings/BookingDetails";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import Homepage from "./pages/Homepage";
+import SignupForm from "./features/authentication/SignupForm";
 
 const App = () => {
   return (
@@ -56,6 +57,7 @@ const App = () => {
             <Route path="settings" element={<Settings />} />
           </Route>
 
+          <Route path="signup" element={<SignupForm />} />
           <Route path="login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

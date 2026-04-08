@@ -37,11 +37,8 @@ const LoginForm = () => {
 
   if (isLoading) return <Spinner size={15} />;
   return (
-    <>
-      <form
-        className="bg-lime-50 p-10 shadow-lg rounded-md"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+    <div className="bg-lime-50  shadow-lg rounded-md">
+      <form className=" p-10 " onSubmit={handleSubmit(onSubmit)}>
         <InputForm
           label="Email address"
           {...register("email", { required: "email is required!" })}
@@ -63,7 +60,15 @@ const LoginForm = () => {
           />
         </div>
       </form>
-    </>
+      <div className="flex justify-end ">
+        <button
+          className=" px-10 py-2 hover:text-blue-600 "
+          onClick={() => navigate("/signup")}
+        >
+          <p className="text-sm">Sign up</p>
+        </button>
+      </div>
+    </div>
   );
 };
 

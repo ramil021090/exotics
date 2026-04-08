@@ -1,12 +1,19 @@
-import AddKeeper from "../features/keepers/AddKeeper";
-import Subheader from "../ui/Subheader";
+import KeepersList from "../features/keepers/KeepersList";
 
 const Keepers = () => {
   return (
-    <div className="flex flex-col w-full mx-auto h-screen">
-      <Subheader title="Invite new Keeper" />
-
-      <AddKeeper />
+    <div
+      className="
+      flex
+      sticky
+      top-10
+      flex-col
+      h-screen
+      w-full
+      max-w-37
+              "
+    >
+      <KeepersList />
     </div>
   );
 };
