@@ -10,7 +10,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ErrorBoundary
       FallbackComponent={ErrorFallbackComponent}
-      onReset={() => window.location.replace("/marketplace")}
+      onReset={() => window.location.replace("/homepage")}
     >
       <App />
     </ErrorBoundary>

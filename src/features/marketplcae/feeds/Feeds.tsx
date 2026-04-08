@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
-import { useNewsFeedStore } from "../../store/feed/useNewsFeedStore";
+import { useNewsFeedStore } from "../../../store/feed/useNewsFeedStore";
 
 import { BiSolidLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa";
 import { FaEllipsisVertical } from "react-icons/fa6";
 
 import { useNavigate } from "react-router-dom";
-import Spinner from "../../ui/Spinner";
+import Spinner from "../../../ui/Spinner";
 
 const Feeds = () => {
   const fetchFeed = useNewsFeedStore((state) => state.fetchFeed);

@@ -1,13 +1,13 @@
 import MarketPlace from "../features/marketplcae/MarketPlace";
 import Subheader from "../ui/Subheader";
 
-const Market = () => {
+const Homepage = () => {
   return (
-    <div className="bg-slate-50 dark:bg-slate-900">
-      <Subheader title="Market" />
+    <div className=" bg-slate-50 dark:bg-slate-900">
+      <Subheader title="Homepage" />
       <MarketPlace />
     </div>
   );
 };
 
-export default Market;
+export default Homepage;

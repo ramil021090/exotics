@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Profile from "./pages/Profile";
-import Market from "./pages/Market";
 import Reports from "./pages/Reports";
 import Keepers from "./pages/Keepers";
 import AppLayout from "./ui/AppLayout";
@@ -11,6 +10,7 @@ import Bookings from "./pages/Bookings";
 import { Toaster } from "react-hot-toast";
 import BookingDetails from "./features/bookings/BookingDetails";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import Homepage from "./pages/Homepage";
 
 const App = () => {
   return (
@@ -44,10 +44,10 @@ const App = () => {
               </ProtectedRoute>
             }
           >
-            <Route index element={<Navigate replace to="marketplace" />} />
+            <Route index element={<Navigate replace to="homepage" />} />
 
             <Route path="/profile/:id" element={<Profile />} />
-            <Route path="marketplace" element={<Market />} />
+            <Route path="homepage" element={<Homepage />} />
             <Route path="reports" element={<Reports />} />
             <Route path="keepers" element={<Keepers />} />
             <Route path="bookings" element={<Bookings />} />

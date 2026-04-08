@@ -19,11 +19,13 @@ const PersonalInformation = ({ profile }: PersonalInformationProps) => {
         month: "long",
       })
     : "";
+
   return (
     <>
       <p className="text-center h-60 w-auto border rounded-sm shadow-md pb-1 mx-1 ">
         cover photo
       </p>
+
       <div className="flex my-3 items-center shadow-md pb-2">
         <div className="mx-2 ">
           <img

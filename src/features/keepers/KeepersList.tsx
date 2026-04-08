@@ -2,7 +2,7 @@ const KeepersList = () => {
   return (
     <div
       className=" hidden 
-    md:flex flex-col justify-center items-center flex-1 h-screen  sticky"
+    md:flex flex-col justify-center items-center  bg-red-400 flex-1 sticky"
     >
       Keepers
       <p>test 1</p>

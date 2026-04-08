@@ -22,7 +22,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (user && !error) {
-      navigate("/marketplace");
+      navigate("/homepage");
     }
     reset();
   }, [error, navigate, reset, user]);
