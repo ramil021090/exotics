@@ -4,7 +4,8 @@ import MainNav from "./MainNav";
 const Sidebar = () => {
   return (
     <aside
-      className="    sticky 
+      className="   
+    sticky 
     top-0 
     left-0 
     self-start 
