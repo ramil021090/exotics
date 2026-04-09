@@ -35,8 +35,8 @@ export interface Post {
 
 
 export type AddPostData = {
-  content: string;
-  images: FileList | null;
+  content?: string;
+  images?: File[] | null;
 
 };
 

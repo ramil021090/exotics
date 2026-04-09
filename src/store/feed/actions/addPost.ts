@@ -23,7 +23,7 @@ export const addPost = async (
       if (!file.type.startsWith('image/')) {
           throw new Error(`Invalid file type: ${file.name}. Only images are allowed.`);
       }
-
+    
       // Generate a unique filename
         const fileExt = file.name.split('.').pop();
         const fileName = `${crypto.randomUUID()}.${fileExt}`;
@@ -44,8 +44,8 @@ export const addPost = async (
       imageUrls.push(urlData.publicUrl);
       
 
-      
     }
+  }
 
     
     // 3. Prepare post data for insertion
@@ -71,8 +71,8 @@ export const addPost = async (
       feeds: [data, ...(state.feeds ||[])],
       error: null,
     }));
-  }
     toast.success("Post added successfully!");
+  
   } catch (error) {
     console.error("Error posting:", error);
     toast.error("Failed to add post. Please try again.");
