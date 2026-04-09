@@ -44,7 +44,7 @@ const AddPostForm = () => {
       </div>
       <input {...register("content")} className="bg-white text-black" />
       <input
-        className="p-2 bg-green-400  shadow-sm rounded-sm  font-black"
+        className="p-2 bg-green-400 max-w-3xs shadow-sm rounded-sm  font-black"
         type="file"
         accept="image/*"
         multiple
