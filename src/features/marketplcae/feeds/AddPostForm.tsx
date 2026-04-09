@@ -10,11 +10,17 @@ const AddPostForm = () => {
   const addPost = useNewsFeedStore((state) => state.addPost);
 
   const onSubmit = async (data: AddPostData) => {
-    await addPost({
+    const imageFiles = data.images ? Array.from(data.images) : [];
+
+    const postData = {
       content: data.content,
-      images: data.images,
-    });
+      images: imageFiles ?? [],
+    };
+
+    await addPost(postData);
     reset();
+    console.log(data.content, data.images);
+    console.log("Data being sent to Supabase:", data);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

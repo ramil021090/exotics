@@ -16,7 +16,7 @@ const Header = () => {
     <div className="flex justify-between items-center sticky top-0 z-20 bg-white border-slate-700 dark:bg-slate-800 shadow-xs ">
       <Logo />
 
-      <div>
+      <div className="flex items-center">
         {
           <ul className="hidden md:flex ">
             {navList.slice(1).map((data) => (
@@ -30,14 +30,14 @@ const Header = () => {
             ))}
           </ul>
         }
+        <HamburgerButton
+          openSmallModal={openSmallModal}
+          openModal={openModal}
+          setOpenSmallModal={setOpenSmallModal}
+          setOpenModal={setOpenModal}
+          onToggle={handleToggle}
+        />
       </div>
-      <HamburgerButton
-        openSmallModal={openSmallModal}
-        openModal={openModal}
-        setOpenSmallModal={setOpenSmallModal}
-        setOpenModal={setOpenModal}
-        onToggle={handleToggle}
-      />
     </div>
   );
 };

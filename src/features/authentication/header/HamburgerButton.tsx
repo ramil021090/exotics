@@ -62,7 +62,7 @@ const HamburgerButton = (props: HamburgerButtonProps) => {
                 className="flex justify-between"
                 onClick={() => setOpenSmallModal(false)}
               >
-                <ul className="hidden md:flex ">
+                <ul className=" md:hidden ">
                   {navList.slice(1).map((data) => (
                     <Fragment key={data.id}>
                       <NavLink to={`/${data.name}`}>

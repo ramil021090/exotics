@@ -35,7 +35,7 @@ const LoginForm = () => {
     await login(data);
   };
 
-  if (isLoading) return <Spinner size={15} />;
+  if (isLoading) return <Spinner size={25} />;
   return (
     <div className="bg-lime-50  shadow-lg rounded-md">
       <form className=" p-10 " onSubmit={handleSubmit(onSubmit)}>
