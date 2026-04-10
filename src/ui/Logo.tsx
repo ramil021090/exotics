@@ -2,9 +2,9 @@ const Logo = () => {
   return (
     <>
       <img
-        className={`h-16 md:h-24 w-auto  my-0.5 shrink `}
-        src="../images/rocketride.png"
-        alt="rocketride"
+        className={`mx-2 mb-8 h-18 max-w-max bg-transparent my-0.5 shrink-0 mb:24`}
+        src="../images/pexopia3.1.png"
+        alt="pexopia"
       />
     </>
   );
