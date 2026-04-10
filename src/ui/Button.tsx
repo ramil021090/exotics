@@ -1,11 +1,11 @@
-import { useState, type ButtonHTMLAttributes } from "react";
+import { useState, type ButtonHTMLAttributes, type ReactNode } from "react";
 
 interface ButtonProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   "title"
 > {
   icon?: React.ReactNode;
-  title?: string;
+  title?: ReactNode;
   type: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "success" | "danger" | "default";
   size?: "sm" | "md" | "lg";
