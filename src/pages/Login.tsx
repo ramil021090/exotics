@@ -6,7 +6,10 @@ const Login = () => {
   return (
     <div className=" flex flex-col justify-center items-center h-screen">
       <Logo />
-      <Subheader title="Log in to your account" />
+      <Subheader
+        title="Please sign in to continue."
+        classname="text-slate-700"
+      />
       <LoginForm />
     </div>
   );
