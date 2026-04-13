@@ -10,7 +10,12 @@ import TextAreaFrom from "../../../forms/TextAreaForm";
 import ImageFileForm from "../../../forms/ImageFileForm";
 
 const AddPostForm = () => {
-  const { register, handleSubmit, reset } = useForm<AddPostData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<AddPostData>();
 
   const addPost = useNewsFeedStore((state) => state.addPost);
   const [openModal, setOpenModal] = useState(false);
@@ -29,6 +34,7 @@ const AddPostForm = () => {
 
     await addPost(postData);
     reset();
+    setOpenModal(false);
   };
 
   return (
@@ -56,9 +62,10 @@ const AddPostForm = () => {
             className="flex flex-col gap-2"
           >
             <TextAreaFrom
-              {...register("content")}
+              {...register("content", { required: "field is required!" })}
               className=" bg-green-100 text-black shadow-md h-60 w-auto"
               placeholder="content"
+              errors={errors?.content?.message}
             />
             <ImageFileForm
               className="p-2 bg-slate-300 max-w-3xs shadow-md rounded-sm  font-black"
@@ -68,7 +75,12 @@ const AddPostForm = () => {
               {...register("images")}
             />
             <div className="flex justify-between my-4">
-              <Button type="reset" variant="danger" title="Cancel" />
+              <Button
+                type="reset"
+                variant="danger"
+                title="Cancel"
+                onToggle={handleToggle}
+              />
               <Button type="submit" variant="secondary" title="Post" />
             </div>
           </form>
