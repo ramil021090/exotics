@@ -1,7 +1,7 @@
 import type { TextareaHTMLAttributes } from "react";
 
 interface TextAreaFormProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  label: string;
+  label?: string;
   errors?: string;
   placeholder?: string;
 }
