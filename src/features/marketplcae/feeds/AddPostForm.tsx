@@ -3,11 +3,21 @@ import type { AddPostData } from "../../../store/feed/actions/utility/types";
 import { useNewsFeedStore } from "../../../store/feed/useNewsFeedStore";
 import { FaCameraRetro } from "react-icons/fa";
 import { MdOutlineInsertPhoto } from "react-icons/md";
+import { useState } from "react";
+import Modal from "../../../modals/Modal";
+import Button from "../../../ui/Button";
+import TextAreaFrom from "../../../forms/TextAreaForm";
+import ImageFileForm from "../../../forms/ImageFileForm";
 
 const AddPostForm = () => {
   const { register, handleSubmit, reset } = useForm<AddPostData>();
 
   const addPost = useNewsFeedStore((state) => state.addPost);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleToggle = () => {
+    setOpenModal((prev) => !prev);
+  };
 
   const onSubmit = async (data: AddPostData) => {
     const imageFiles = data.images ? Array.from(data.images) : [];
@@ -19,21 +29,17 @@ const AddPostForm = () => {
 
     await addPost(postData);
     reset();
-    console.log(data.content, data.images);
-    console.log("Data being sent to Supabase:", data);
   };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <>
       <div
-        onClick={() => {
-          console.log("clicked");
-        }}
+        onClick={handleToggle}
         className="flex gap-1 items-center px-2 py-4 m-1 rounded-lg shadow-md bg-white dark:bg-slate-800"
       >
         <input
-          // type="button"
           className="bg-slate-200 text-center text-black max-w-50 ml-2 border rounded-lg shadow-md inset-shadow-xs "
-          placeholder="Flex your exotics"
+          placeholder="Share your thoughts..."
         />
         <span>
           <FaCameraRetro size={25} />
@@ -42,16 +48,33 @@ const AddPostForm = () => {
           <MdOutlineInsertPhoto size={30} />
         </span>
       </div>
-      <input {...register("content")} className="bg-white text-black" />
-      <input
-        className="p-2 bg-green-400 max-w-3xs shadow-sm rounded-sm  font-black"
-        type="file"
-        accept="image/*"
-        multiple
-        {...register("images")}
-      />
-      <button>post</button>
-    </form>
+
+      {openModal && (
+        <Modal>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-2"
+          >
+            <TextAreaFrom
+              {...register("content")}
+              className=" bg-green-100 text-black shadow-md h-60 w-auto"
+              placeholder="content"
+            />
+            <ImageFileForm
+              className="p-2 bg-slate-300 max-w-3xs shadow-md rounded-sm  font-black"
+              type="file"
+              accept="image/*"
+              multiple
+              {...register("images")}
+            />
+            <div className="flex justify-between my-4">
+              <Button type="reset" variant="danger" title="Cancel" />
+              <Button type="submit" variant="secondary" title="Post" />
+            </div>
+          </form>
+        </Modal>
+      )}
+    </>
   );
 };
 

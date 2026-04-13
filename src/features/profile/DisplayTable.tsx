@@ -21,6 +21,7 @@ const DisplayTable = ({ data }: { data: Items }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const deleteItem = useExoStore((state) => state.deleteItem);
+
   const { loading } = useExoStore();
   const handleToggle = () => {
     setShowForm((prev) => !prev);
@@ -70,7 +71,7 @@ const DisplayTable = ({ data }: { data: Items }) => {
 
       <div key={data?.id} className=" mb-1   rounded-lg dark:bg-slate-800">
         <div className=" flex justify-between dark:bg-slate-800 relative ">
-          <div className="flex flex-col">
+          <div className="flex flex-col items-start">
             {/* <div className="">
               {data.isSold ? (
                 <p className="text-red-600 text-8xl font-bold relative top-30 left-0 opacity-50">

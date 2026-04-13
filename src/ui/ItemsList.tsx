@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import type { Items } from "../store/useExoStore/actions/utility/types";
-import { GiLindenLeaf } from "react-icons/gi";
 
 import Spinner from "./Spinner";
 
@@ -9,11 +8,11 @@ interface ItemsListProps {
   render: (item: Items) => ReactNode;
 }
 const ItemsList = ({ data, render }: ItemsListProps) => {
-  if (data.length === 0) {
+  if (data.length <= 0) {
     return (
       <>
-        <div className=" flex justify-center h-screen items-center animate-bounce">
-          <GiLindenLeaf size={32} />
+        <div className=" flex justify-center h-screen items-center">
+          <h1>No Listings yet...</h1>
         </div>
       </>
     );

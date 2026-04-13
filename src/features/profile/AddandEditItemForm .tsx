@@ -14,6 +14,7 @@ import type { Items } from "../../store/useExoStore/actions/utility/types";
 import Button from "../../ui/Button";
 import Title from "../../ui/Title";
 import Modal from "../../modals/Modal";
+import ImageFileForm from "../../forms/ImageFileForm";
 interface AddItemProps {
   onToggle: () => void;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -103,7 +104,7 @@ const AddandEditItemForm: React.FC<AddItemProps> = (props) => {
           />
 
           <TextAreaFrom
-            label="descriptions"
+            placeholder="descriptions"
             {...register("descriptions", { required: "field required!" })}
             errors={errors?.descriptions?.message}
           />
@@ -120,11 +121,7 @@ const AddandEditItemForm: React.FC<AddItemProps> = (props) => {
               className="max-w-32 max-h-32 object-cover rounded-lg border"
             />
           ) : (
-            <InputForm
-              className=" max-w-22 rounded-md shadow-md px-1 bg-green-500 hover:bg-green-400 "
-              type="file"
-              placeholder=""
-              // label="insert image"
+            <ImageFileForm
               accept="image/*"
               {...register("images", {
                 required: isEditSession ? false : "image is required!",

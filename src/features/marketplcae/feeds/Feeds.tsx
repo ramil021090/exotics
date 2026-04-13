@@ -45,7 +45,7 @@ const Feeds = () => {
   if (loading && feeds?.length === 0)
     return (
       <div className="text-center p-4">
-        <Spinner size={20} />
+        <Spinner size={24} />
       </div>
     );
 
