@@ -4,7 +4,7 @@ import { useAuthenticationStore } from "../../store/useAuthentication.tsx/useAut
 const Logout = () => {
   const logout = useAuthenticationStore((state) => state.logout);
   return (
-    <button className="hover:bg-red-500" onClick={logout}>
+    <button className="hover:text-red-500" onClick={logout}>
       <div className="flex items-center">
         <HiMiniArrowRightStartOnRectangle /> <span>logout</span>
       </div>

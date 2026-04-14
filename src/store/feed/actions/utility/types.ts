@@ -54,6 +54,7 @@ export interface FeedStore {
   fetchFeed: () => Promise<void>;
   fetchProfile:(id:string)=>Promise<void>
   addPost:(postData:AddPostData)=>Promise<void>
+  deletePost:(id:number)=>Promise<void>
   loadMore:()=>Promise<void>
   reset:()=>void
 }
