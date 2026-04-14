@@ -4,6 +4,7 @@ import { fetchFeed } from "./actions/fetchFeeds";
 import { addPost,  } from "./actions/addPost";
 import { fetchProfile } from "./actions/fetchProfile";
 import { loadMore } from "./actions/loadMore";
+import { deletePost } from "./actions/deletePost";
 
 export const useNewsFeedStore = create<FeedStore>((set,get) => ({
   feeds:[],
@@ -21,8 +22,12 @@ export const useNewsFeedStore = create<FeedStore>((set,get) => ({
     await addPost(set,postData)
 
   },
+  deletePost:async(id:number)=> {
+    await deletePost(set,id)
+    
+  },
 fetchProfile:async(id:string)=>{
-  await fetchProfile(set,id)
+  return fetchProfile(set,id)
 },
 loadMore: async()=>{
   await  loadMore(set,get)},

@@ -23,6 +23,10 @@ const DisplayTable = ({ data }: { data: Items }) => {
   const deleteItem = useExoStore((state) => state.deleteItem);
 
   const { loading } = useExoStore();
+
+  const handleToggleSmallModal = () => {
+    setShowSmallModal((prev) => !prev);
+  };
   const handleToggle = () => {
     setShowForm((prev) => !prev);
   };
@@ -37,7 +41,7 @@ const DisplayTable = ({ data }: { data: Items }) => {
       <div className="flex  justify-end dark:bg-slate-800 relative">
         {showSmallModal && (
           <SmallModal onClose={() => setShowSmallModal(false)}>
-            <div className="flex flex-col ">
+            <div className="flex flex-col items-start ">
               <Button
                 icon={<RiDeleteBin6Fill />}
                 variant="success"
@@ -64,7 +68,7 @@ const DisplayTable = ({ data }: { data: Items }) => {
             </div>
           </SmallModal>
         )}
-        <button className=" mb-2" onClick={() => setShowSmallModal((t) => !t)}>
+        <button className=" mb-2" onClick={handleToggleSmallModal}>
           <FaEllipsisVertical />
         </button>
       </div>
