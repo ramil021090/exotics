@@ -6,7 +6,7 @@ interface SpinnerProps {
 
 const Spinner = ({ size }: SpinnerProps) => {
   return (
-    <div className="inline-block mt-8 animate-spin">
+    <div className="flex justify-center items-center p-4">
       <ImSpinner9 size={size} />
     </div>
   );
