@@ -30,7 +30,6 @@ const SignupForm = () => {
       await signup(data);
       reset();
       navigate("/login");
-      console.log(data);
     } catch (error: unknown) {
       const err = error as {
         status?: number;
@@ -44,6 +43,8 @@ const SignupForm = () => {
       } else {
         toast.error("Signup failed. Please try again.");
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 

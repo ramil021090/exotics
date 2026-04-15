@@ -61,8 +61,8 @@ const Feeds = () => {
 
   if (loading && feeds?.length === 0)
     return (
-      <div className="text-center p-4">
-        <Spinner size={24} />
+      <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-50">
+        <Spinner size={32} />
       </div>
     );
 

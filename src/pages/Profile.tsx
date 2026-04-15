@@ -63,7 +63,12 @@ const Profile = () => {
     return String(aVal).localeCompare(String(bVal)) * modifier;
   });
 
-  if (loading || itemsLoading) return <Spinner size={15} />;
+  if (loading || itemsLoading)
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-50">
+        <Spinner size={32} />;
+      </div>
+    );
   if (error) return <div>Error: {error}</div>;
   if (!profile) return <div>User not found</div>;
 

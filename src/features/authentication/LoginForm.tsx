@@ -1,11 +1,12 @@
-import { useForm } from "react-hook-form";
-import InputForm from "../../forms/InputForm";
-import Button from "../../ui/Button";
 import { useAuthenticationStore } from "../../store/useAuthentication.tsx/useAuthenticationStore";
+import type { Credentials } from "../../store/useAuthentication.tsx/actions/utility/types";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import type { Credentials } from "../../store/useAuthentication.tsx/actions/utility/types";
+
 import Spinner from "../../ui/Spinner";
+import Button from "../../ui/Button";
+import InputForm from "../../forms/InputForm";
 
 const LoginForm = () => {
   const {
@@ -16,8 +17,8 @@ const LoginForm = () => {
   } = useForm<Credentials>();
 
   const login = useAuthenticationStore((state) => state.login);
-  const navigate = useNavigate();
   const user = useAuthenticationStore((state) => state.user);
+  const navigate = useNavigate();
   const { error, isLoading } = useAuthenticationStore();
 
   useEffect(() => {
@@ -29,10 +30,10 @@ const LoginForm = () => {
 
   const onSubmit = async (data: Credentials) => {
     if (!data.email || !data.password) {
-      console.log("Empty fields – returning early");
       return;
     }
     await login(data);
+    console.error(error);
   };
 
   if (isLoading) return <Spinner size={25} />;
