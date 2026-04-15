@@ -14,7 +14,6 @@ const MarketPlace = () => {
   return (
     <div className="h-screen">
       <AddPostForm />
-
       <Feeds />
     </div>
   );

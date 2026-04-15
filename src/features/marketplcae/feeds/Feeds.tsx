@@ -9,10 +9,11 @@ import { ImSpinner9 } from "react-icons/im";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 // import { MdModeEdit } from "react-icons/md";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../../../ui/Spinner";
 import Button from "../../../ui/Button";
 import SmallModal from "../../../modals/SmallModal";
+import { MdModeEdit } from "react-icons/md";
 
 const Feeds = () => {
   const [activeModalPostId, setActiveModalPostId] = useState<number | null>(
@@ -22,11 +23,12 @@ const Feeds = () => {
   const fetchFeed = useNewsFeedStore((state) => state.fetchFeed);
   const loadMore = useNewsFeedStore((state) => state.loadMore);
   const deletePost = useNewsFeedStore((state) => state.deletePost);
-
   const { feeds, loading, loadingMore, hasMore } = useNewsFeedStore();
 
   const navigate = useNavigate();
   const observerRef = useRef<HTMLDivElement>(null);
+
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
     fetchFeed();
@@ -70,10 +72,6 @@ const Feeds = () => {
     }).format(date);
   };
 
-  // const handleToggleSmallModal = () => {
-  //   setShowSmallModal((prev) => !prev);
-  // };
-
   return (
     <>
       <div className="flex flex-col shadow-2xl  rounded-t-lg my-2  mx-auto space-4">
@@ -84,8 +82,8 @@ const Feeds = () => {
           >
             <div className="shadow-sm">
               <div className="flex justify-end px-2 pt-2 relative">
-                {activeModalPostId === post.id && (
-                  <SmallModal onClose={() => setActiveModalPostId(post.id)}>
+                {activeModalPostId === post.id && post.user_id === id && (
+                  <SmallModal onClose={() => setActiveModalPostId(null)}>
                     <div className="flex flex-col items-start ">
                       <Button
                         icon={<RiDeleteBin6Fill />}
@@ -96,30 +94,30 @@ const Feeds = () => {
                         onDelete={async (id) => {
                           await deletePost(id);
                           setActiveModalPostId(null);
-                          console.log("post deleted");
                         }}
                         deleteId={post.id}
                       />
-                      {/* <Button
-                onToggle={() => {
-                  handleToggle();
-                  setShowSmallModal(false);
-                }}
-                icon={<MdModeEdit />}
-                variant="success"
-                title="edit"
-                type="button"
-                size="sm"
-              /> */}
+                      <Button
+                        onToggle={() => {
+                          setActiveModalPostId(null);
+                        }}
+                        icon={<MdModeEdit />}
+                        variant="success"
+                        title="edit"
+                        type="button"
+                        size="sm"
+                      />
                     </div>
                   </SmallModal>
                 )}
-                <button
-                  className="flex"
-                  onClick={() => setActiveModalPostId(post.id)}
-                >
-                  <FaEllipsisVertical />
-                </button>
+                {post.user_id === id && (
+                  <button
+                    className="flex"
+                    onClick={() => setActiveModalPostId(post.id)}
+                  >
+                    <FaEllipsisVertical />
+                  </button>
+                )}
               </div>
 
               <div className=" mb-2 px-2 ">
