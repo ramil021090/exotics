@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { MdModeEdit } from "react-icons/md";
@@ -15,7 +15,12 @@ import AddandEditItemForm from "./AddandEditItemForm ";
 import Spinner from "../../ui/Spinner";
 import { createPortal } from "react-dom";
 
-const DisplayTable = ({ data }: { data: Items }) => {
+interface DisplayTableProps {
+  data: Items;
+  isOwnProfile: ReactNode;
+}
+
+const DisplayTable = ({ data, isOwnProfile }: DisplayTableProps) => {
   const [showForm, setShowForm] = useState(false);
   const [showSmallModal, setShowSmallModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -68,9 +73,11 @@ const DisplayTable = ({ data }: { data: Items }) => {
             </div>
           </SmallModal>
         )}
-        <button className=" mb-2" onClick={handleToggleSmallModal}>
-          <FaEllipsisVertical />
-        </button>
+        {isOwnProfile && (
+          <button className=" mb-2" onClick={handleToggleSmallModal}>
+            <FaEllipsisVertical />
+          </button>
+        )}
       </div>
 
       <div key={data?.id} className=" mb-1   rounded-lg dark:bg-slate-800">

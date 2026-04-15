@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import AddandEditItem from "../features/profile/AddandEditItem";
-import DisplayTable from "../features/profile/DisplayTable";
-import DisplayTableOperations from "../features/profile/operations/DisplayTableOperations";
-import type { Items } from "../store/useExoStore/actions/utility/types";
 import { useExoStore } from "../store/useExoStore/useExoStore";
-import ItemsList from "../ui/ItemsList";
-import Subheader from "../ui/Subheader";
-import PersonalInformation from "../features/authentication/header/PersonalInformation";
 import { useNewsFeedStore } from "../store/feed/useNewsFeedStore";
 import { useAuthenticationStore } from "../store/useAuthentication.tsx/useAuthenticationStore";
+import type { Items } from "../store/useExoStore/actions/utility/types";
+
+import DisplayTableOperations from "../features/profile/operations/DisplayTableOperations";
+import PersonalInformation from "../features/authentication/header/PersonalInformation";
+import AddandEditItem from "../features/profile/AddandEditItem";
+import DisplayTable from "../features/profile/DisplayTable";
+import ItemsList from "../ui/ItemsList";
+import Subheader from "../ui/Subheader";
 import Spinner from "../ui/Spinner";
 
 const Profile = () => {
@@ -92,7 +93,7 @@ const Profile = () => {
             key={item.id}
             className="bg-slate-100 mb-1 p-4 rounded-lg shadow-xl dark:bg-slate-800"
           >
-            <DisplayTable data={item} />
+            <DisplayTable isOwnProfile={isOwnProfile} data={item} />
           </div>
         )}
       />

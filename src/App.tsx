@@ -45,10 +45,10 @@ const App = () => {
               </ProtectedRoute>
             }
           >
-            <Route index element={<Navigate replace to="homepage" />} />
+            <Route index element={<Navigate replace to="homepage/:id" />} />
 
             <Route path="/profile/:id" element={<Profile />} />
-            <Route path="homepage" element={<Homepage />} />
+            <Route path="homepage/:id" element={<Homepage />} />
             <Route path="reports" element={<Reports />} />
             <Route path="keepers" element={<Keepers />} />
             <Route path="bookings" element={<Bookings />} />

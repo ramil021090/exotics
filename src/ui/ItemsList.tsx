@@ -24,7 +24,6 @@ const ItemsList = ({ data, render }: ItemsListProps) => {
   return (
     <>
       {data.length > 0 && (
-        // className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-10xl mx-auto px-4 sm:px-6"
         <div className="flex flex-col  dark:bg-slate-800 ">
           {data.map(render)}
         </div>
