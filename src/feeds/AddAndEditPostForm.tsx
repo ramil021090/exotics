@@ -1,15 +1,22 @@
 import { useForm } from "react-hook-form";
-import type { AddPostData } from "../../../store/feed/actions/utility/types";
-import { useNewsFeedStore } from "../../../store/feed/useNewsFeedStore";
+import type { AddPostData } from "../store/feed/actions/utility/types";
+import { useNewsFeedStore } from "../store/feed/useNewsFeedStore";
 import { FaCameraRetro } from "react-icons/fa";
 import { MdOutlineInsertPhoto } from "react-icons/md";
-import { useState } from "react";
-import Modal from "../../../modals/Modal";
-import Button from "../../../ui/Button";
-import TextAreaFrom from "../../../forms/TextAreaForm";
-import ImageFileForm from "../../../forms/ImageFileForm";
+import { type Dispatch, type SetStateAction } from "react";
+import Modal from "../modals/Modal";
+import Button from "../ui/Button";
+import TextAreaFrom from "../forms/TextAreaForm";
+import ImageFileForm from "../forms/ImageFileForm";
 
-const AddPostForm = () => {
+interface AddAndEditPostFormProps {
+  openModal: boolean;
+  setOpenModal: Dispatch<SetStateAction<boolean>>;
+  handleToggle: () => void;
+}
+
+const AddAndEditPostForm = (props: AddAndEditPostFormProps) => {
+  const { handleToggle, openModal, setOpenModal } = props;
   const {
     register,
     handleSubmit,
@@ -18,11 +25,11 @@ const AddPostForm = () => {
   } = useForm<AddPostData>();
 
   const addPost = useNewsFeedStore((state) => state.addPost);
-  const [openModal, setOpenModal] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
 
-  const handleToggle = () => {
-    setOpenModal((prev) => !prev);
-  };
+  // const handleToggle = () => {
+  //   setOpenModal((prev) => !prev);
+  // };
 
   const onSubmit = async (data: AddPostData) => {
     const imageFiles = data.images ? Array.from(data.images) : [];
@@ -88,4 +95,4 @@ const AddPostForm = () => {
   );
 };
 
-export default AddPostForm;
+export default AddAndEditPostForm;

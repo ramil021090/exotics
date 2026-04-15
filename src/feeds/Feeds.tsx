@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNewsFeedStore } from "../../../store/feed/useNewsFeedStore";
+import { useNewsFeedStore } from "../store/feed/useNewsFeedStore";
 
 import { BiSolidLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa";
@@ -10,15 +10,21 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 // import { MdModeEdit } from "react-icons/md";
 
 import { useNavigate, useParams } from "react-router-dom";
-import Spinner from "../../../ui/Spinner";
-import Button from "../../../ui/Button";
-import SmallModal from "../../../modals/SmallModal";
+import Spinner from "../ui/Spinner";
+import Button from "../ui/Button";
+import SmallModal from "../modals/SmallModal";
 import { MdModeEdit } from "react-icons/md";
+import AddAndEditPostForm from "./AddAndEditPostForm";
 
 const Feeds = () => {
   const [activeModalPostId, setActiveModalPostId] = useState<number | null>(
     null,
   );
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleToggle = () => {
+    setOpenModal((prev) => !prev);
+  };
 
   const fetchFeed = useNewsFeedStore((state) => state.fetchFeed);
   const loadMore = useNewsFeedStore((state) => state.loadMore);
@@ -74,6 +80,12 @@ const Feeds = () => {
 
   return (
     <>
+      <AddAndEditPostForm
+        handleToggle={handleToggle}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
+
       <div className="flex flex-col shadow-2xl  rounded-t-lg my-2  mx-auto space-4">
         {feeds?.map((post) => (
           <div
@@ -99,7 +111,9 @@ const Feeds = () => {
                       />
                       <Button
                         onToggle={() => {
+                          handleToggle();
                           setActiveModalPostId(null);
+                          console.log("clicked");
                         }}
                         icon={<MdModeEdit />}
                         variant="success"
