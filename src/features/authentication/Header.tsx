@@ -1,12 +1,15 @@
 import { Fragment, useState } from "react";
 import HamburgerButton from "./header/HamburgerButton";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { navList } from "../../lists/navList";
 import Logo from "../../ui/Logo";
+import { useAuthenticationStore } from "../../store/useAuthentication.tsx/useAuthenticationStore";
 
 const Header = () => {
   const [openSmallModal, setOpenSmallModal] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const currentUserId = useAuthenticationStore((state) => state.user?.id);
+  const navigate = useNavigate();
 
   const handleToggle = () => {
     setOpenSmallModal((prev) => !prev);
@@ -14,8 +17,9 @@ const Header = () => {
 
   return (
     <div className="flex justify-between items-center sticky top-0 z-20 bg-white border-slate-700 dark:bg-slate-800 shadow-xs ">
-      <Logo />
-
+      <div onClick={() => navigate(`/homepage/${currentUserId}`)}>
+        <Logo />
+      </div>
       <div className="flex items-center">
         {
           <ul className="hidden md:flex ">
