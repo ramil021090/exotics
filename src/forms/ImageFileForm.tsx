@@ -6,6 +6,7 @@ interface ImageFileFormProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
   accept?: string;
   className?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const ImageFileForm = ({

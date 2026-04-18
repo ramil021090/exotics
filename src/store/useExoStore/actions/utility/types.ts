@@ -24,16 +24,13 @@ export interface ExoStoreState {
 
 
 export interface ExoStoreProps {
-  items: Items[];
+  items: Items[]; 
 
   error?: string | null;
   loading:boolean;
   fetchItems: () => Promise<void>;
   addItem: (itemData: Omit<Items, "id" | "created_at">) => Promise<void>;
   deleteItem: (id: number) => Promise<void>;
-  // updateItem: (id:  number, updatedData: Partial<Omit<Items, "id" | "created_at">>) => Promise<void>;
   updateItem: (id: number, item: Partial<Items>) => Promise<void>
 
 }
-
-// export type ExoStore = ExoStoreState & ExoStoreProps;

@@ -1,10 +1,11 @@
 import { create } from "zustand";
-import type { AddPostData, FeedStore } from "./actions/utility/types";
+import type {  FeedStore } from "./actions/utility/types";
 import { fetchFeed } from "./actions/fetchFeeds";
 import { addPost,  } from "./actions/addPost";
 import { fetchProfile } from "./actions/fetchProfile";
 import { loadMore } from "./actions/loadMore";
 import { deletePost } from "./actions/deletePost";
+import { editPost } from "./actions/editPost";
 
 export const useNewsFeedStore = create<FeedStore>((set,get) => ({
   feeds:[],
@@ -18,14 +19,15 @@ export const useNewsFeedStore = create<FeedStore>((set,get) => ({
   fetchFeed: async () => {
     await fetchFeed(set);
   },
-  addPost:async( postData: AddPostData)=>{
-    await addPost(set,postData)
+  addPost:async( ...props)=>{
+    await addPost(set,...props)
 
   },
-  deletePost:async(id:number)=> {
-    await deletePost(set,id)
+  deletePost:async(...props)=> {
+    await deletePost(set,...props)
     
   },
+  editPost: (...props) => editPost(set, ...props),
 fetchProfile:async(id:string)=>{
   return fetchProfile(set,id)
 },

@@ -33,6 +33,10 @@ export interface Post {
   comments?: ReactNode;     
 }
 
+export interface PostProps{
+  feeds:Post[]
+  error?:string|null
+}
 
 export type AddPostData = {
   content?: string;
@@ -50,11 +54,12 @@ export interface FeedStore {
   hasMore:boolean;
   page:number;
   loading: boolean;
-  error: string | null;
+  error?: string | null;
   fetchFeed: () => Promise<void>;
   fetchProfile:(id:string)=>Promise<void>
   addPost:(postData:AddPostData)=>Promise<void>
   deletePost:(id:number)=>Promise<void>
+  editPost:(id: number, post: Partial<Post>)=>Promise<void>
   loadMore:()=>Promise<void>
   reset:()=>void
 }
