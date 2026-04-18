@@ -18,7 +18,7 @@ import ImageFileForm from "../../forms/ImageFileForm";
 interface AddItemProps {
   onToggle: () => void;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  // open?: boolean;
+  open?: boolean;
   showForm?: boolean;
   displayTableToEdit?: Items | Items[];
 }
