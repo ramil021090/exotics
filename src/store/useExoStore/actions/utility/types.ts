@@ -32,5 +32,6 @@ export interface ExoStoreProps {
   addItem: (itemData: Omit<Items, "id" | "created_at">) => Promise<void>;
   deleteItem: (id: number) => Promise<void>;
   updateItem: (id: number, item: Partial<Items>) => Promise<void>
+          hasMore={hasMore}
 
 }
