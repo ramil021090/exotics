@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useExoStore } from "../store/useExoStore/useExoStore";
 import { useNewsFeedStore } from "../store/feed/useNewsFeedStore";
@@ -12,6 +12,7 @@ import DisplayTable from "../features/profile/DisplayTable";
 import ItemsList from "../ui/ItemsList";
 import Subheader from "../ui/Subheader";
 import Spinner from "../ui/Spinner";
+import InfiniteScrollPagination from "../feeds/InfiniteScrollPagination";
 
 const Profile = () => {
   const items = useExoStore((state) => state.items);
@@ -19,6 +20,9 @@ const Profile = () => {
   const fetchProfile = useNewsFeedStore((state) => state.fetchProfile);
   const currentUserId = useAuthenticationStore((state) => state.user?.id);
   const { loading, profile, error } = useNewsFeedStore();
+
+  const loadMore = useExoStore((state) => state.loadMore);
+  const { loadingMore, hasMore } = useExoStore();
 
   const [searchParams] = useSearchParams();
   const { id } = useParams<{ id: string }>();
@@ -34,6 +38,27 @@ const Profile = () => {
     };
     loadData();
   }, [id, fetchProfile, fetchItems]);
+
+  const setObserverRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (!node) return;
+      if (!hasMore || loadingMore) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            loadMore();
+          }
+        },
+        { threshold: 0.5, rootMargin: "100px" },
+      );
+
+      observer.observe(node);
+      // Cleanup when the node is removed or dependencies change
+      return () => observer.disconnect();
+    },
+    [hasMore, loadingMore, loadMore],
+  );
 
   // Filter items belonging to the viewed user
   const userItems = items.filter((item) => item.user_id === id);
@@ -63,6 +88,14 @@ const Profile = () => {
     return String(aVal).localeCompare(String(bVal)) * modifier;
   });
 
+  if (loading && items?.length === 0)
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-50">
+        <Spinner size={32} />
+      </div>
+    );
+  console.log(items);
+
   if (loading || itemsLoading)
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-50">
@@ -71,13 +104,15 @@ const Profile = () => {
     );
   if (error) return <div>Error: {error}</div>;
   if (!profile) return <div>User not found</div>;
+  if (loading && items.length === 0) {
+    return <div className="text-center p-4">Loading species...</div>;
+  }
 
   const isOwnProfile = currentUserId === id;
 
   return (
     <div className="flex flex-col mx-1">
       <PersonalInformation profile={profile} />
-
       <div className="md:flex justify-between flex-col ">
         <div className="flex justify-between items-center text-center ">
           <Subheader
@@ -90,7 +125,6 @@ const Profile = () => {
           {userItems.length <= 1 ? null : <DisplayTableOperations />}
         </div>
       </div>
-
       <ItemsList
         data={sortedSpecies}
         render={(item) => (
@@ -102,6 +136,12 @@ const Profile = () => {
           </div>
         )}
       />
+      {hasMore && (
+        <InfiniteScrollPagination
+          loadingMore={loadingMore}
+          ref={setObserverRef}
+        />
+      )}
     </div>
   );
 };

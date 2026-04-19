@@ -6,12 +6,16 @@ import { deleteItem } from "./actions/deleteItem";
 import { updateItem } from "./actions/updateItem";
 
 import type { ExoStoreProps } from "./actions/utility/types";
+import { loadMore } from "./actions/loadMore";
 
 
-export const useExoStore = create<ExoStoreProps>((set,) => ({
+export const useExoStore = create<ExoStoreProps>((set,get) => ({
   items: [],
   error: null,
   loading: false,
+  loadingMore:false,
+  page:1,
+  hasMore:true,
 
   fetchItems: () => fetchItems(set,),
   
@@ -21,14 +25,15 @@ export const useExoStore = create<ExoStoreProps>((set,) => ({
 
   updateItem: (...props) => updateItem(set, ...props),
 
-  // updateItem: async (id, updatedData) => {
-  //   await updateItem(set, id, updatedData);
-  //   // After updating, refresh the items list
-  //   await get().fetchItems();
-  // },
-//   updateItem: async (id, updatedData) => {
+  loadMore: async()=>{
+    await  loadMore(set,get)
+    console.log('loadMore called, page:', get().page, 'hasMore:', get().hasMore);
+  },
+  reset: () => {
+    set(
+      { items: [], error: null, loading: false, page: 1, loadingMore: false, hasMore: true }
+    );
+  },
 
-  
-//   return updateItem(set, id, updatedData);
-// },
+
 }));
