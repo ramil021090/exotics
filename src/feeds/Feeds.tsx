@@ -6,7 +6,7 @@ import AddAndEditPostForm from "./AddAndEditPostForm";
 import Spinner from "../ui/Spinner";
 import PostButton from "./PostButton";
 import PostTable from "./PostTable";
-import InfiniteScrollPagination from "./InfiniteScrollPagination";
+import InfiniteScrollPagination from "../ui/InfiniteScrollPagination";
 import LikesAndComments from "./LikesAndComments";
 
 const Feeds = () => {

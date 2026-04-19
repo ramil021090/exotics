@@ -4,7 +4,9 @@ interface SubheaderProps {
 }
 const Subheader = ({ title, classname }: SubheaderProps) => {
   return (
-    <div className={` flex   text-center font-bold mb-2 ${classname} `}>
+    <div
+      className={` flex text-slate-600   text-center font-bold mb-2 ${classname} `}
+    >
       {title}
     </div>
   );

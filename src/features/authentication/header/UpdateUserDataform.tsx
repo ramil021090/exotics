@@ -59,7 +59,7 @@ const UpdateUserDataform = ({ onCancel }: UpdateUserDataformProps) => {
         {/* <UpdatePasswordForgot register={register} errors={errors} /> */}
 
         <UpdateAvatar register={register} errors={errors} />
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-2">
           <Button
             variant="danger"
             title="cancel"
