@@ -2,15 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNewsFeedStore } from "../store/feed/useNewsFeedStore";
 
-import { BiSolidLike } from "react-icons/bi";
-import { FaRegCommentDots } from "react-icons/fa";
-import { TiArrowDownThick } from "react-icons/ti";
-import { ImSpinner9 } from "react-icons/im";
-
 import AddAndEditPostForm from "./AddAndEditPostForm";
 import Spinner from "../ui/Spinner";
 import PostButton from "./PostButton";
 import PostTable from "./PostTable";
+import InfiniteScrollPagination from "./InfiniteScrollPagination";
+import LikesAndComments from "./LikesAndComments";
 
 const Feeds = () => {
   const [activeModalPostId, setActiveModalPostId] = useState<number | null>(
@@ -59,7 +56,7 @@ const Feeds = () => {
         <Spinner size={32} />
       </div>
     );
-
+  console.log(feeds);
   return (
     <>
       <PostButton handleToggle={handleToggle} />
@@ -86,38 +83,16 @@ const Feeds = () => {
               />
             )}
 
-            <div className="my-2 flex justify-around">
-              <div className="flex items-center gap-1">
-                <BiSolidLike /> <span>Like</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <FaRegCommentDots /> <span>Comment</span>
-              </div>
-            </div>
+            <LikesAndComments />
           </div>
         ))}
 
-        {hasMore && (
-          <div
-            ref={observerRef}
-            className="h-10 flex justify-center items-center"
-          >
-            {loadingMore && (
-              <div className="text-center text-sm rounded-full bg-slate-400 animate-bounce ">
-                <TiArrowDownThick size={18} />
-              </div>
-            )}
-          </div>
-        )}
-
-        {!hasMore && feeds.length > 0 && (
-          <div className=" flex justify-center items-center text-center text-sm text-gray-500 py-4">
-            <div className="animate-spin ">
-              <ImSpinner9 size={18} />
-            </div>
-            <span className="mx-1">Processing...</span>
-          </div>
-        )}
+        <InfiniteScrollPagination
+          hasMore={hasMore}
+          loadingMore={loadingMore}
+          observerRef={observerRef}
+          feeds={feeds}
+        />
       </div>
     </>
   );

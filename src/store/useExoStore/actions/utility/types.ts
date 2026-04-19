@@ -22,16 +22,21 @@ export interface ExoStoreState {
   selectedItem: Items | null;
 }
 
+export const PAGE_SIZE=5
 
 export interface ExoStoreProps {
   items: Items[]; 
 
   error?: string | null;
   loading:boolean;
+  page:number;
+  loadingMore:boolean;
+  hasMore:boolean;
   fetchItems: () => Promise<void>;
   addItem: (itemData: Omit<Items, "id" | "created_at">) => Promise<void>;
   deleteItem: (id: number) => Promise<void>;
   updateItem: (id: number, item: Partial<Items>) => Promise<void>
-          hasMore={hasMore}
+  loadMore:()=>Promise<void>
+  reset:()=>void
 
 }
