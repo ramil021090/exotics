@@ -12,7 +12,7 @@ import DisplayTable from "../features/profile/DisplayTable";
 import ItemsList from "../ui/ItemsList";
 import Subheader from "../ui/Subheader";
 import Spinner from "../ui/Spinner";
-import InfiniteScrollPagination from "../feeds/InfiniteScrollPagination";
+import InfiniteScrollPagination from "../ui/InfiniteScrollPagination";
 
 const Profile = () => {
   const items = useExoStore((state) => state.items);

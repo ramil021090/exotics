@@ -13,13 +13,13 @@ const DefaultPersonalInformation = ({
 }: DefaultPersonalInformationProps) => {
   return (
     <>
-      <div className=" px-2 mb-4 ">
-        <div className="flex justify-end">{user?.email}</div>
-        <div className="flex flex-col items-center">
-          <label>username</label>
-          {/* <div className="  min-w-46">{user?.user_metadata?.username}</div> */}
+      <div className="px-2 mb-4 space-y-2">
+        <div className="flex justify-end">
+          <span className="text-sm text-gray-500">{user?.email}</span>
+        </div>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
           <InputForm
-            className="max-w-2xs border border-slate-300 rounded-md"
+            className="flex-1 border-b-2 border-gray-300 pb-1 focus:border-amber-500 focus:outline-none transition-colors"
             {...register("username")}
           />
         </div>

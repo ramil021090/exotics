@@ -15,6 +15,7 @@ import Modal from "../modals/Modal";
 import Button from "../ui/Button";
 import TextAreaFrom from "../forms/TextAreaForm";
 import ImageFileForm from "../forms/ImageFileForm";
+import Subheader from "../ui/Subheader";
 
 interface AddAndEditPostFormProps {
   showForm: boolean;
@@ -121,6 +122,9 @@ const AddAndEditPostForm = (props: AddAndEditPostFormProps) => {
     <>
       {showForm && (
         <Modal>
+          <Subheader
+            title={isEditSession ? "Update your post" : "Share your thoughts"}
+          />
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-2"
@@ -133,11 +137,17 @@ const AddAndEditPostForm = (props: AddAndEditPostFormProps) => {
             />
 
             {isEditSession && existingImageUrls.length > 0 && (
-              <div>
-                <label>Current Images:</label>
-                <div className="flex gap-2">
+              <div className="text-slate-500">
+                {existingImageUrls.length > 1 ? (
+                  <label>Current Images</label>
+                ) : (
+                  <label>Current Image</label>
+                )}
+                <div
+                  className={`flex gap-2 ${existingImageUrls.length > 2 ? "grid grid-cols-2" : ""} `}
+                >
                   {existingImageUrls.map((url, idx) => (
-                    <div key={idx} className="relative">
+                    <div key={idx} className={`relative `}>
                       <button
                         type="button"
                         onClick={() => removeExistingImage(url)}
@@ -148,7 +158,7 @@ const AddAndEditPostForm = (props: AddAndEditPostFormProps) => {
                       <img
                         src={url}
                         alt={`Existing ${idx}`}
-                        className="w-20 h-20 object-cover"
+                        className={`w-20 h-20 object-cover`}
                       />
                     </div>
                   ))}
@@ -186,7 +196,11 @@ const AddAndEditPostForm = (props: AddAndEditPostFormProps) => {
                 title="Cancel"
                 onToggle={onToggle}
               />
-              <Button type="submit" variant="secondary" title="Post" />
+              <Button
+                type="submit"
+                variant="secondary"
+                title={isEditSession ? "Update" : "Post"}
+              />
             </div>
           </form>
         </Modal>
